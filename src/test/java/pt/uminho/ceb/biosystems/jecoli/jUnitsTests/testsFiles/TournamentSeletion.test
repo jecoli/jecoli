@@ -1,0 +1,21 @@
+Operator:TournamentSelection
+InitialPopulation {
+	Solution{ Array(true;false;false;true;false) fitness:30.0 }
+	Solution{ Array(true;true;false;true;true) fitness:10.0 }
+	Solution{ Array(true;true;true;false;false) fitness:4.0 }
+	Solution{ Array(true;false;false;true;false) fitness:42.0 }
+	Solution{ Array(false;true;true;true;true) fitness:38.0 }
+}
+
+ExpectedSolution {
+	Solution{ Array(false;true;true;true;true)  }
+	Solution{ Array(true;false;false;true;false)  }
+	Solution{ Array(false;true;true;true;true)  }
+}
+
+SpecificOperatorValues{
+	isMaximization:true
+	numberOfSolutionsToSelect: 3
+	numberOfSolutionsPerTournment:1
+	k: 1
+}

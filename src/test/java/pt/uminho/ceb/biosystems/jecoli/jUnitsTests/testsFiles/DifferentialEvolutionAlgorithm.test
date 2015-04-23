@@ -1,0 +1,13 @@
+Operator:DifferentialEvolutionAlgorithm
+InitialPopulation {
+	Solution{ Array(2.0;1.0;4.0;2.0)  }
+}
+
+ExpectedSolution {
+	Solution{ Array(10.0;0.0;10.0;0.0)  }
+}
+
+SpecificOperatorValues{
+	size:1000
+	numberOfGenerations: 10
+}

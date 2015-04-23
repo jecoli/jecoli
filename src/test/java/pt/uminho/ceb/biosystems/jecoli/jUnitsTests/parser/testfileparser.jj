@@ -1,0 +1,882 @@
+options {
+	LOOKAHEAD=1;
+	DEBUG_PARSER=false;
+	STATIC=false;
+}
+
+PARSER_BEGIN(Test)
+package org.optflux.jecoli3.jUnitsTests.parser;
+
+import org.optflux.jecoli3.jUnitsTests.BitFlipMutationTest;
+import org.optflux.jecoli3.jUnitsTests.CellularGeneticAlgorithmTest;
+import org.optflux.jecoli3.jUnitsTests.CutAndSpliceCrossoverTest;
+import org.optflux.jecoli3.jUnitsTests.DifferentialEvolutionAlgorithmTest;
+import org.optflux.jecoli3.jUnitsTests.EvolutionaryAlgorithmTest;
+import org.optflux.jecoli3.jUnitsTests.GaussianPerturbationMutationTest;
+import org.optflux.jecoli3.jUnitsTests.ITest;
+import org.optflux.jecoli3.jUnitsTests.IntegerAddMutationTest;
+import org.optflux.jecoli3.jUnitsTests.LinearGenomeGrowMutationTest;
+import org.optflux.jecoli3.jUnitsTests.LinearGenomeRandomMutationTest;
+import org.optflux.jecoli3.jUnitsTests.LinearGenomeShrinkMutationTest;
+import org.optflux.jecoli3.jUnitsTests.NSGAIIAlgorithmTest;
+import org.optflux.jecoli3.jUnitsTests.OnePointCrossoverTest;
+import org.optflux.jecoli3.jUnitsTests.RouletteWheelSelectionTest;
+import org.optflux.jecoli3.jUnitsTests.SPEA2AlgorithmTest;
+import org.optflux.jecoli3.jUnitsTests.SetGrowthMutationTest;
+import org.optflux.jecoli3.jUnitsTests.SetRandomMutationTest;
+import org.optflux.jecoli3.jUnitsTests.SetShrinkMutationTest;
+import org.optflux.jecoli3.jUnitsTests.SimulatedAnnealingTest;
+import org.optflux.jecoli3.jUnitsTests.TournamentSelectionTest;
+import org.optflux.jecoli3.jUnitsTests.TwoPointCrossoverTest;
+
+import java.util.ArrayList;
+import java.util.TreeSet;
+
+import org.optflux.jecoli3.algorithm.components.representation.linear.ILinearRepresentation;
+import org.optflux.jecoli3.algorithm.components.representation.linear.LinearRepresentation;
+import org.optflux.jecoli3.algorithm.components.representation.set.SetRepresentation;
+import org.optflux.jecoli3.algorithm.components.solution.ISolution;
+import org.optflux.jecoli3.algorithm.components.solution.Solution;
+
+public class Test
+{
+	public static ITest main(String args[]) throws ParseException {
+	    Test parser = new Test(System.in);
+	    try	    {
+	    	return parser.start();
+	  	}
+	  	catch (Exception e) {
+			e.printStackTrace();
+	  	}
+
+	  	return null;
+	  }
+}
+
+PARSER_END(Test)
+
+SKIP:
+{
+	" "
+|	"\r"
+|	"\t"
+|	"\n"
+}
+
+TOKEN:
+{
+  //< EOL: "\n">
+	< OPERATOR: "Operator">
+|	< RANDOMSEED: "RandomSeed">
+|	< INITIALPOP: "InitialPopulation">
+|	< SOLUTION: "Solution">
+|	< EXPECTEDSOL: "ExpectedSolution">
+|	< SPECIFICOPERATORVALUES: "SpecificOperatorValues">
+|	< LBRACKET: "{" >
+|	< RBRACKET: "}" >
+|	< TRUE: "true">
+|	< FALSE: "false">
+|	< HALFCOMMA: ":" >
+|   < DOUBLE : (["0" - "9"])+ "." (["0" - "9"])+ > 
+|   < DIGIT: (["0" - "9"])+ >
+|   < PLUS: "plus" >
+| 	< ADD: "add" >
+|   < MINUS: "minus" >
+| 	< SEMICOMMA: ";" >
+|   < MULT: "mult" >
+|   < DIV: "div" >
+| 	< POW: "pow" >
+|   < RETURN: "return">
+| 	< DO: "do" >
+| 	< END: "end" >
+|   < EQUAL: "equals" >
+| 	< SUBTRACTION: "subtraction" >
+|   < LPAR: "(" >
+|   < RPAR: ")" >
+| 	< SIZE: "size" >
+| 	< ISMAX: "isMaximization" >
+| 	< GENNUM : "numberOfGenerations" >
+| 	< ARRAY:"Array" >
+|   < SET : "Set" >
+| 	< BOOLEAN : "Boolean" >
+| 	< TRUEORFALSE : "true"|"false" >
+| 	< INTEGER: "Integer" >
+| 	< SOLUTIONTYPE: "SolutionType" >
+|   < LOWERBOUND: "lowerBound" >
+| 	< UPPERBOUND: "upperBound" >
+| 	< NUMBEROFSOLUTIONSTOSELECT: "numberOfSolutionsToSelect" >
+|   < NUMBEROFSOLUTIONSPERTOURNAMENT: "numberOfSolutionsPerTournment" >
+|   < K : "k">
+|   < MAXSIZE : "MaxSize" >
+|   < FITNESS : "fitness" >
+| 	< ILINEARREPRESENTATION: "ILinearRepresentation" > 
+| 	< BITFLIPMUTATION: "BitFlipMutation" >
+| 	< EVOLUTIONARYALGORITHM: "EvolutionaryAlgorithm" >
+|	< CELLULARGENETICALGORITHM: "CellularGeneticAlgorithm" >
+|	< CUTANDSPLICECROSSOVER: "CutAndSpliceCrossover" >
+| 	< DIFFERENTIALEVOLUTIONALGORITHM: "DifferentialEvolutionAlgorithm" >
+| 	< GAUSSIANPERTURBATIONMUTATION: "GaussianPerturbationMutation" >
+|  	< INTEGERADDMUTATION : "IntegerAddMutation" >
+|   < SETSHRINKMUTATION : "SetShrinkMutation" >
+|   < SETGROWTHMUTATION : "SetGrowthMutation" >
+|   < SETRANDOMMUTATION : "SetRandomMutation" > 
+| 	< LINEARGENOMEGROWMUTATION: "LinearGenomeGrowMutation" >
+| 	< LINEARGENOMERANDOMMUTATION: "LinearGenomeRandomMutation" >
+| 	< LINEARGENOMESHRINKMUTATION: "LinearGenomeShrinkMutation" >
+| 	< NSGAIIALGORITHM: "NSGAIIAlgorithm" >
+| 	< ONEPOINTCROSSOVER: "OnePointCrossover" >
+| 	< TWOPOINTCROSSOVER: "TwoPointCrossover" >
+| 	< ROULETTEWHEELSELECTION: "RouletteWheelSelection" >
+| 	< SIMULATEDANNEALING: "SimulatedAnnealing" >
+| 	< SPEA2ALGORITHM: "SPEA2Algorithm" >
+| 	< TOURNAMENTSELECTION: "TournamentSelection" >
+|	< STRING: (["A"-"Z","a"-"z"])+ | (["A"-"Z","a"-"z"] (<DIGIT>)*)+ >
+}
+
+ITest start() throws Exception:
+{ ITest test; }
+{
+	test = operator()
+
+	{	  return test;	}	
+}
+
+ITest operator():
+{
+  Token t;
+  ITest test;
+}
+{
+	<OPERATOR> <HALFCOMMA> test = defineOperator()
+	test = initialPop(test)
+	{
+	  test.setTestValues();
+	  return test;	}
+}
+
+ITest defineOperator():
+{}
+{
+	< BITFLIPMUTATION > { return new BitFlipMutationTest();}|
+	< EVOLUTIONARYALGORITHM > { return new EvolutionaryAlgorithmTest();}
+|
+	< CELLULARGENETICALGORITHM > { return new CellularGeneticAlgorithmTest();}
+|
+	< CUTANDSPLICECROSSOVER > { return new CutAndSpliceCrossoverTest();}
+|
+	< DIFFERENTIALEVOLUTIONALGORITHM > { return new DifferentialEvolutionAlgorithmTest();}
+|
+	< GAUSSIANPERTURBATIONMUTATION > { return new GaussianPerturbationMutationTest();}
+|
+	< INTEGERADDMUTATION > { return new IntegerAddMutationTest();}
+|
+	< LINEARGENOMEGROWMUTATION > { return new LinearGenomeGrowMutationTest();}
+|
+	< LINEARGENOMERANDOMMUTATION > { return new LinearGenomeRandomMutationTest();}
+|
+	< LINEARGENOMESHRINKMUTATION > { return new LinearGenomeShrinkMutationTest();}
+|
+	< NSGAIIALGORITHM > { return new NSGAIIAlgorithmTest(true);}
+|
+	< ONEPOINTCROSSOVER > { return new OnePointCrossoverTest();}
+|
+	< TWOPOINTCROSSOVER > { return new TwoPointCrossoverTest();}
+|
+	< ROULETTEWHEELSELECTION > { return new RouletteWheelSelectionTest();}
+|
+	< SIMULATEDANNEALING > { return new SimulatedAnnealingTest();}
+|
+	< SPEA2ALGORITHM > { return new SPEA2AlgorithmTest();}
+|
+	< TOURNAMENTSELECTION > { return new TournamentSelectionTest();}
+|
+	< SETGROWTHMUTATION > { return new SetGrowthMutationTest(); }
+|
+	< SETRANDOMMUTATION > { return new SetRandomMutationTest(); }
+|
+	< SETSHRINKMUTATION > { return new SetShrinkMutationTest(); }  }
+
+
+ITest initialPop(ITest test):
+{
+  ITest tests=test;
+  ArrayList<ISolution > initialPop;
+}
+{
+	<INITIALPOP> <LBRACKET> initialPop=defineSolution() <RBRACKET>
+
+	{
+	  tests.setInitialPopulation(initialPop);	}
+
+	tests = expectedSolution(tests)
+
+	{
+	  return tests;
+	} 
+}
+
+ITest expectedSolution(ITest test):
+{
+  ITest tests = test;
+  ArrayList<ISolution > expectedSol;
+}
+{
+	<EXPECTEDSOL> <LBRACKET> expectedSol=defineSolution() <RBRACKET>
+
+	{
+		tests.setExpectedSolutions(expectedSol); 	}
+
+	tests = specificOperatorValues(tests)
+
+	{
+	  return tests;	}
+	
+}
+
+ITest specificOperatorValues(ITest test):
+{
+  ITest tests=test;
+}
+{
+	<SPECIFICOPERATORVALUES> <LBRACKET> tests=setOperator(tests) <RBRACKET>
+
+	{
+	  return tests;
+	}
+}
+
+ITest setOperator(ITest test):
+{
+  ITest tests = test;}
+{
+	{ 	  if(tests.getName().equals("BitFlipMutation"))
+		tests=setBitFlipMutation(tests);
+		
+	  if(tests.getName().equals("OnePointCrossover"))
+	  	tests=setOnePointCrossover(tests);
+	  	
+	  if(tests.getName().equals("DifferentialEvolutionAlgorithm"))
+	  	tests=setDifferentialEvolutionAlgorithm(tests);
+
+	  if(tests.getName().equals("LinearGenomeGrowMutation"))
+		tests=setLinearGenomeGrowMutation(tests);
+
+	  if(tests.getName().equals("LinearGenomeRandomMutation"))
+		tests=setLinearGenomeRandomMutation(tests);
+
+	  if(tests.getName().equals("LinearGenomeShrinkMutation"))
+		tests=setLinearGenomeShrinkMutation(tests);
+
+	  if(tests.getName().equals("IntegerAddMutation"))
+		tests=setIntegerAddMutation(tests);
+
+	  if(tests.getName().equals("EvolutionaryAlgorithm"))
+		tests=setEvolutionaryAlgorithm(tests);
+
+	  if(tests.getName().equals("TwoPointCrossover"))
+		tests=setTwoPointCrossover(tests);
+
+	  if(tests.getName().equals("CutAndSpliceCrossover"))
+		tests=setCutAndSpliceCrossover(tests);
+
+	  if(tests.getName().equals("GaussianPerturbationMutation"))
+		tests=setGaussianPerturbationMutation(tests);
+
+	  if(tests.getName().equals("CellularGeneticAlgorithm"))
+		tests=setCellularGeneticAlgorithm(tests);
+
+	  if(tests.getName().equals("TournamentSeletion"))
+		tests=setTournamentSeletion(tests);
+
+	  if(tests.getName().equals("RouletteWheelSelection"))
+		tests=setRouletteWheelSelection(tests);
+
+	  if(tests.getName().equals("SimulatedAnnealing"))
+		tests=setSimulatedAnnealing(tests);
+
+	  if(tests.getName().equals("SetRandomMutation"))
+		tests=setSetRandomMutation(tests);
+
+	  if(tests.getName().equals("SetShrinkMutation"))
+		tests=setSetShrinkMutation(tests);
+
+	  if(tests.getName().equals("SetGrowthMutation"))
+		tests=setSetGrowthMutation(tests);
+	  	
+	  return tests;	}}
+
+ITest setSetGrowthMutation(ITest test):
+{
+  ITest tests = test;
+  int maxSize;
+  Token t;
+}
+{
+  <MAXSIZE> <HALFCOMMA> t=<DIGIT>
+  {
+	  	maxSize = Integer.valueOf(t.image);
+    	((SetGrowthMutationTest)tests).setSize(maxSize);
+    	return tests;
+  }
+}
+
+ITest setSetShrinkMutation(ITest test):
+{
+  ITest tests = test;
+  int maxSize;
+  Token t;
+}
+{
+  <MAXSIZE> <HALFCOMMA> t=<DIGIT>
+  {
+	  	maxSize = Integer.valueOf(t.image);
+    	((SetShrinkMutationTest)tests).setSize(maxSize);
+    	return tests;
+  }
+}
+
+ITest setSetRandomMutation(ITest test):
+{
+  ITest tests = test;
+  int maxSize;
+  Token t;
+}
+{
+  <MAXSIZE> <HALFCOMMA> t=<DIGIT>
+  {
+	  	maxSize = Integer.valueOf(t.image);
+    	((SetRandomMutationTest)tests).setSize(maxSize);
+    	return tests;
+  }
+}
+
+ITest setSimulatedAnnealing(ITest test):
+{
+  ITest tests = test;
+  int size;
+  boolean isMaximization;
+  int numberOfGenerations;
+  Token t;
+  Object values;
+}
+{
+  < ISMAX > <HALFCOMMA>  (t=< TRUE > | t=< FALSE >)
+  {
+    isMaximization = Boolean.valueOf(t.image);
+    ((SimulatedAnnealingTest)tests).setIsMaximization(isMaximization);
+  }
+  < SIZE > <HALFCOMMA > t=< DIGIT >
+  {
+    size = Integer.valueOf(t.image);
+    ((SimulatedAnnealingTest)tests).setPopulationSize(size);
+  }
+  < GENNUM > <HALFCOMMA > t=< DIGIT >
+  {
+    numberOfGenerations = Integer.valueOf(t.image);
+    ((SimulatedAnnealingTest)tests).setNumberOfGenerations(numberOfGenerations);
+  }
+
+  {
+    return tests;
+  }
+}
+
+ITest setRouletteWheelSelection(ITest test):
+{
+  ITest tests = test;
+  Token t;
+  boolean isMaximization;
+  int numberOfSolutionsToSelect;
+}
+{
+	< ISMAX > <HALFCOMMA>  (t=< TRUE > | t=< FALSE >)	
+  	{	 
+    	isMaximization = Boolean.valueOf(t.image);
+    	((RouletteWheelSelectionTest)tests).setIsMaximization(isMaximization);
+  	}
+  	
+	< NUMBEROFSOLUTIONSTOSELECT > <HALFCOMMA > t=< DIGIT >
+	{
+	  numberOfSolutionsToSelect = Integer.valueOf(t.image);
+	  ((RouletteWheelSelectionTest)tests).setNumberOfSolutionsToSelect(numberOfSolutionsToSelect);
+	}
+  	
+	{
+	  return tests;
+	}
+}
+
+ITest setTournamentSeletion(ITest test):
+{
+  ITest tests = test;
+  Token t;
+  boolean isMaximization;
+  int numberOfSolutionsToSelect;
+  int numberOfSolutionsPerTournment;
+  int k;
+}
+{
+	< ISMAX > <HALFCOMMA>  (t=< TRUE > | t=< FALSE >)	
+  	{	 
+    	isMaximization = Boolean.valueOf(t.image);
+    	((TournamentSelectionTest)tests).setIsMaximization(isMaximization);
+  	}
+  	
+	< NUMBEROFSOLUTIONSTOSELECT > <HALFCOMMA > t=< DIGIT >
+	{
+	  numberOfSolutionsToSelect = Integer.valueOf(t.image);
+	  ((TournamentSelectionTest)tests).setNumberOfSolutionsToSelect(numberOfSolutionsToSelect);	}
+
+	< NUMBEROFSOLUTIONSPERTOURNAMENT > <HALFCOMMA > t=< DIGIT >
+	{
+	  numberOfSolutionsPerTournment = Integer.valueOf(t.image);
+	  ((TournamentSelectionTest)tests).setNumberOfSolutionsPerTournment(numberOfSolutionsPerTournment);	} 
+
+	< K > <HALFCOMMA > t=< DIGIT >
+	{
+	  k = Integer.valueOf(t.image);
+	  ((TournamentSelectionTest)tests).setK(k);	}
+  	
+	{
+	  return tests;
+	}
+}
+
+
+ITest setCellularGeneticAlgorithm(ITest test):
+{
+  ITest tests = test;
+  int size;
+  boolean isMaximization;
+  int numberOfGenerations;
+  Token t;
+  Object values;
+}
+{
+  < ISMAX > <HALFCOMMA>  (t=< TRUE > | t=< FALSE >)
+  {
+    isMaximization = Boolean.valueOf(t.image);
+    ((CellularGeneticAlgorithmTest)tests).setIsMaximization(isMaximization);
+  }
+  < SIZE > <HALFCOMMA > t=< DIGIT >
+  {
+    size = Integer.valueOf(t.image);
+    ((CellularGeneticAlgorithmTest)tests).setPopulationSize(size);
+  }
+  < GENNUM > <HALFCOMMA > t=< DIGIT >
+  {
+    numberOfGenerations = Integer.valueOf(t.image);
+    ((CellularGeneticAlgorithmTest)tests).setNumberOfGenerations(numberOfGenerations);
+  }
+
+  {
+    return tests;
+  }
+}
+
+ITest setGaussianPerturbationMutation(ITest test):
+{
+  ITest tests = test;
+  int size;
+  double upperbound;
+  double lowerbound;
+  Token t;
+}
+{
+  < SIZE > <HALFCOMMA > t=< DIGIT >
+	{
+	 size = Integer.valueOf(t.image);
+	 ((GaussianPerturbationMutationTest)tests).setSize(size); 
+	}
+  < UPPERBOUND > <HALFCOMMA > (t=< DOUBLE >)
+	{
+	 upperbound = Double.valueOf(t.image);
+	 ((GaussianPerturbationMutationTest)tests).setUpperBound(upperbound); 
+	}
+  < LOWERBOUND > <HALFCOMMA > (t=< DOUBLE >)
+  	{
+	 lowerbound = Double.valueOf(t.image);
+	 ((GaussianPerturbationMutationTest)tests).setLowerBound(lowerbound); 
+	}
+
+	{
+	  return tests;
+	}
+}
+
+
+ITest setCutAndSpliceCrossover(ITest test):
+{
+  ITest tests = test;
+  int size;
+  Token t;
+}
+{
+  <SIZE> <HALFCOMMA> t=<DIGIT>
+  {
+	  	size = Integer.valueOf(t.image);
+    	((CutAndSpliceCrossoverTest)tests).setSize(size);
+    	return tests;
+  }
+}
+
+ITest setTwoPointCrossover(ITest test):
+{
+  ITest tests = test;
+  int size;
+  Token t;
+}
+{
+  <SIZE> <HALFCOMMA> t=<DIGIT>
+  {
+	  	size = Integer.valueOf(t.image);
+    	((TwoPointCrossoverTest)tests).setSize(size);
+    	return tests;
+  }
+}
+
+ITest setEvolutionaryAlgorithm(ITest test):
+{
+  ITest tests = test;
+  int size;
+  boolean isMaximization;
+  int numberOfGenerations;
+  Token t;
+  Object values;
+}
+{
+  < ISMAX > <HALFCOMMA>  (t=< TRUE > | t=< FALSE >)
+  {
+    isMaximization = Boolean.valueOf(t.image);
+    ((EvolutionaryAlgorithmTest)tests).setIsMaximization(isMaximization);
+  }
+  < SIZE > <HALFCOMMA > t=< DIGIT >
+  {
+    size = Integer.valueOf(t.image);
+    ((EvolutionaryAlgorithmTest)tests).setPopulationSize(size);
+  }
+  < GENNUM > <HALFCOMMA > t=< DIGIT >
+  {
+    numberOfGenerations = Integer.valueOf(t.image);
+    ((EvolutionaryAlgorithmTest)tests).setNumberOfGenerations(numberOfGenerations);
+  }
+
+  {
+    return tests;
+  }
+}
+
+
+ITest setIntegerAddMutation(ITest test):
+{
+  ITest tests = test;
+  int size;
+  int upperbound;
+  int lowerbound;
+  Token t;
+}
+{
+  < SIZE > <HALFCOMMA > t=< DIGIT >
+	{
+	 size = Integer.valueOf(t.image);
+	 ((IntegerAddMutationTest)tests).setSize(size); 
+	}
+  < UPPERBOUND > <HALFCOMMA > t=< DIGIT >
+	{
+	 upperbound = Integer.valueOf(t.image);
+	 ((IntegerAddMutationTest)tests).setUpperBound(upperbound); 
+	}
+  < LOWERBOUND > <HALFCOMMA > t=< DIGIT >
+  	{
+	 lowerbound = Integer.valueOf(t.image);
+	 ((IntegerAddMutationTest)tests).setLowerBound(lowerbound); 
+	}
+
+	{
+	  return tests;
+	}
+}
+
+
+ITest setLinearGenomeShrinkMutation(ITest test):
+{
+  ITest tests = test;
+  int size;
+  int upperbound;
+  int lowerbound;
+  Token t;
+}
+{
+  < SIZE > <HALFCOMMA > t=< DIGIT >
+	{
+	 size = Integer.valueOf(t.image);
+	 ((LinearGenomeShrinkMutationTest)tests).setSize(size); 
+	}
+  < UPPERBOUND > <HALFCOMMA > t=< DIGIT >
+	{
+	 upperbound = Integer.valueOf(t.image);
+	 ((LinearGenomeShrinkMutationTest)tests).setUpperBound(upperbound); 
+	}
+  < LOWERBOUND > <HALFCOMMA > t=< DIGIT >
+  	{
+	 lowerbound = Integer.valueOf(t.image);
+	 ((LinearGenomeShrinkMutationTest)tests).setLowerBound(lowerbound); 
+	}
+
+	{
+	  return tests;
+	}
+}
+
+
+ITest setLinearGenomeRandomMutation(ITest test):
+{
+  ITest tests = test;
+  int size;
+  int upperbound;
+  int lowerbound;
+  Token t;
+}
+{
+  < SIZE > <HALFCOMMA > t=< DIGIT >
+	{
+	 size = Integer.valueOf(t.image);
+	 ((LinearGenomeRandomMutationTest)tests).setSize(size); 
+	}
+  < UPPERBOUND > <HALFCOMMA > t=< DIGIT >
+	{
+	 upperbound = Integer.valueOf(t.image);
+	 ((LinearGenomeRandomMutationTest)tests).setUpperBound(upperbound); 
+	}
+  < LOWERBOUND > <HALFCOMMA > t=< DIGIT >
+  	{
+	 lowerbound = Integer.valueOf(t.image);
+	 ((LinearGenomeRandomMutationTest)tests).setLowerBound(lowerbound); 
+	}
+
+	{
+	  return tests;
+	}
+}
+
+ITest setLinearGenomeGrowMutation(ITest test):
+{
+  ITest tests = test;
+  int size;
+  int upperbound;
+  int lowerbound;
+  Token t;}{
+  < SIZE > <HALFCOMMA > t=< DIGIT >
+	{
+	 size = Integer.valueOf(t.image);
+	 ((LinearGenomeGrowMutationTest)tests).setSize(size); 	}
+  < UPPERBOUND > <HALFCOMMA > t=< DIGIT >
+	{
+	 upperbound = Integer.valueOf(t.image);
+	 ((LinearGenomeGrowMutationTest)tests).setUpperBound(upperbound); 
+	}
+  < LOWERBOUND > <HALFCOMMA > t=< DIGIT >
+  	{
+	 lowerbound = Integer.valueOf(t.image);
+	 ((LinearGenomeGrowMutationTest)tests).setLowerBound(lowerbound); 
+	}
+
+	{
+	  return tests;	}}
+
+ITest setDifferentialEvolutionAlgorithm(ITest test):
+{
+  ITest tests = test;
+  int size;
+  int numberOfGenerations;
+  Token t;
+  Object values;}{
+  < SIZE > <HALFCOMMA > t=< DIGIT >
+  {
+    size = Integer.valueOf(t.image);
+    ((DifferentialEvolutionAlgorithmTest)tests).setPopulationSize(size);  }
+  < GENNUM > <HALFCOMMA > t=< DIGIT >
+  {
+    numberOfGenerations = Integer.valueOf(t.image);
+    ((DifferentialEvolutionAlgorithmTest)tests).setNumberOfGenerations(numberOfGenerations);  }
+
+  {
+    return tests;  }}
+
+
+ITest setOnePointCrossover(ITest test):
+{
+  ITest tests = test;
+  int size;
+  Token t;}{
+  <SIZE> <HALFCOMMA> t=<DIGIT>
+  {
+	  	size = Integer.valueOf(t.image);
+    	((OnePointCrossoverTest)tests).setSize(size);
+    	return tests;
+  }}
+
+ITest setBitFlipMutation(ITest test):
+{
+  ITest tests = test;
+  int size;
+  Token t;}
+{
+  <SIZE> <HALFCOMMA> t=<DIGIT>
+  {
+	  	size = Integer.valueOf(t.image);    	((BitFlipMutationTest)tests).setSize(size);
+    	return tests;
+  }}
+
+ArrayList<ISolution > defineSolution():
+{
+  ArrayList<ISolution > solutions = new ArrayList<ISolution >();
+  ISolution s;
+}
+{
+	(<SOLUTION> <LBRACKET> s=representation() s=setSolutionFitness(s) { solutions.add(s); }  <RBRACKET>)+
+	{
+	  return solutions;
+	} 
+}
+
+ISolution setSolutionFitness(ISolution solution):
+{
+  Token t;
+  ISolution s = solution;
+  double fitness;}
+{
+  (    < FITNESS > <HALFCOMMA > t=<DOUBLE > 
+  {
+    fitness = Double.valueOf(t.image);
+     s.setFitnessValue(fitness);
+  }
+  
+  )?
+ {
+    return s;  }}
+
+ISolution representation():
+{
+ISolution sol;
+
+}
+{
+	sol = representationDefinition()
+	
+	{
+	  return sol;
+	} 
+}
+
+ISolution representationDefinition():
+{
+Token t;
+//ILinearRepresentation<Object> genome = new LinearRepresentation<Object>();
+Object gen;
+int position;
+}
+{
+	<ARRAY> <LPAR> gen=terms()
+
+	{
+	  	ILinearRepresentation<Object > genome1 = new LinearRepresentation<Object >();
+	  	position = genome1.getNumberOfElements();
+		genome1.addElement(position,gen);		
+	}
+	
+	 (<SEMICOMMA> gen=terms()
+
+	{
+	  	position = genome1.getNumberOfElements();
+		genome1.addElement(position,gen);		
+	}
+
+	 )*
+	
+	<RPAR>
+	{
+	  return new Solution(genome1);
+	} 
+|	
+	< SET > <LPAR > gen=terms()
+	{
+		TreeSet<Integer> setElements = new TreeSet<Integer>();
+		setElements.add(((Integer)gen));
+	  			
+	}
+	
+	 (<SEMICOMMA> gen=terms()
+
+	{
+		setElements.add(((Integer)gen));		
+	}
+
+	 )*
+	
+	<RPAR>
+	{
+	  return new Solution(new SetRepresentation(setElements));
+	} 
+
+}
+
+void treeNodes():
+{
+ }
+{
+<ADD> <LPAR> representationDefinition() <RPAR> <LPAR> representationDefinition() <RPAR> <RPAR>
+{
+	  
+} 
+|
+<MULT> <LPAR> representationDefinition() <RPAR> <LPAR> representationDefinition() <RPAR> <RPAR>
+{
+	  
+} 
+|
+<DIV> <LPAR> representationDefinition() <RPAR> <LPAR> representationDefinition() <RPAR> <RPAR>
+{
+	  
+} 
+|
+<POW> <LPAR> representationDefinition() <RPAR> <LPAR> representationDefinition() <RPAR> <RPAR>
+{
+	  
+} 
+|
+<SUBTRACTION> <LPAR> representationDefinition() <RPAR> <LPAR> representationDefinition() <RPAR> <RPAR>
+{
+	  
+} 
+|
+	terms() {} 
+  }
+
+Object terms():
+{
+Token t;
+}
+{
+    <MINUS> <DIGIT> {return null;}
+|	t=<TRUE>
+	{
+  		boolean btrue = Boolean.valueOf(t.image);
+  		return btrue;
+ 	} 
+|   t=<FALSE>
+	{
+	  boolean bfalse = Boolean.valueOf(t.image);
+	  return bfalse;
+	}
+|   t=<STRING>
+	{
+	  return t.image;
+	}
+| t=< DOUBLE >
+	{
+	  return Double.valueOf(t.image);	}
+| t=< DIGIT >
+	{
+	  return Integer.valueOf(t.image);	}
+}

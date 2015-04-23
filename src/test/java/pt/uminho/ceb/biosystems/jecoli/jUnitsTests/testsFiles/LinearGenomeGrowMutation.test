@@ -1,0 +1,14 @@
+Operator:LinearGenomeGrowMutation
+InitialPopulation {
+	Solution{ Array(3;2;1;1;1)  }
+}
+
+ExpectedSolution {
+	Solution{ Array(10;3;2;1;1;1)  }
+}
+
+SpecificOperatorValues{
+	size:5
+	upperBound: 10
+	lowerBound: 0
+}

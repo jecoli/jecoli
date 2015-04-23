@@ -1,0 +1,14 @@
+Operator:OnePointCrossover
+InitialPopulation {
+	Solution{ Array(true;true;false;false;false) }
+	Solution{ Array(false;false;true;true;true) }
+}
+
+ExpectedSolution {
+	Solution{ Array(false;false;true;true;true) }
+	Solution{ Array(true;true;false;false;false) }
+}
+
+SpecificOperatorValues{
+	size: 5
+}

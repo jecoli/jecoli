@@ -1,0 +1,19 @@
+Operator:RouletteWheelSelection
+InitialPopulation {
+	Solution{ Array(true;false;false;true;false) fitness:30.0 }
+	Solution{ Array(true;true;false;true;true) fitness:10.0 }
+	Solution{ Array(true;true;true;false;false) fitness:4.0 }
+	Solution{ Array(true;false;false;true;false) fitness:52.0 }
+	Solution{ Array(false;true;true;true;true) fitness:38.0 }
+}
+
+ExpectedSolution {
+	Solution{ Array(false;true;true;true;true) fitness:38.0 }
+	Solution{ Array(true;false;false;true;false) fitness:30.0 }
+	Solution{ Array(false;true;true;true;true) fitness:38.0 }
+}
+
+SpecificOperatorValues{
+	isMaximization:true
+	numberOfSolutionsToSelect: 3
+}

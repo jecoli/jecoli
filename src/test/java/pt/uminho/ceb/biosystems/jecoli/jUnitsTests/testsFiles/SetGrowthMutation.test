@@ -1,0 +1,12 @@
+Operator:SetGrowthMutation
+InitialPopulation {
+	Solution{ Set(2;3;4;5)  }
+}
+
+ExpectedSolution {
+	Solution{ Set(0;2;3;4;5)  }
+}
+
+SpecificOperatorValues{
+	MaxSize: 10
+}

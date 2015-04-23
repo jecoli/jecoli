@@ -1,0 +1,12 @@
+Operator:SetRandomMutation
+InitialPopulation {
+	Solution{ Set(1;2;3;4;5)  }
+}
+
+ExpectedSolution {
+	Solution{ Set(2;3;4;5;9)  }
+}
+
+SpecificOperatorValues{
+	MaxSize: 10
+}

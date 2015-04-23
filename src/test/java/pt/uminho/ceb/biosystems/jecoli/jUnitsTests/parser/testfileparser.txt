@@ -1,0 +1,4 @@
+options {
+	LOOKAHEAD=1;
+	DEBUG_PARSER=false;
+}

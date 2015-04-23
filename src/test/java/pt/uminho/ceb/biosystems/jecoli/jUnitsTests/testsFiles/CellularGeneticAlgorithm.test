@@ -1,0 +1,14 @@
+Operator:CellularGeneticAlgorithm
+InitialPopulation {
+	Solution{ Array(false;false;true;true)  }
+}
+
+ExpectedSolution {
+	Solution{ Array(true;true;true;true)  }
+}
+
+SpecificOperatorValues{
+	isMaximization:true
+	size:4
+	numberOfGenerations: 100
+}

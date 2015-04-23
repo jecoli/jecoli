@@ -1,0 +1,12 @@
+Operator:BitFlipMutation
+InitialPopulation {
+	Solution{ Array(true;true;true) }
+}
+
+ExpectedSolution {
+	Solution{ Array(true;true;false) }
+}
+
+SpecificOperatorValues{
+	size:3
+}
