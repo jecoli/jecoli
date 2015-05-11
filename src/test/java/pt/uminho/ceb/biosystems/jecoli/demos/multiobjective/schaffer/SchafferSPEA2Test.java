@@ -24,7 +24,6 @@ package pt.uminho.ceb.biosystems.jecoli.demos.multiobjective.schaffer;
 
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.IAlgorithm;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.IAlgorithmResult;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.IAlgorithmStatistics;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.configuration.InvalidConfigurationException;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.evaluationfunction.IEvaluationFunction;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.container.ReproductionOperatorContainer;

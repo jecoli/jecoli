@@ -36,11 +36,11 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolutionFa
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolutionSet;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.SolutionSet;
 
-// TODO: Auto-generated Javadoc
+//TODO: Auto-generated Javadoc
 /**
- * The Class RandomSearch.
- */
-public class RandomSearch<T extends IRepresentation> extends AbstractAlgorithm<T,RandomSearchConfiguration<T>>{
+* The Class RandomSearch.
+*/
+public class RandomSearch<T extends IRepresentation, S extends ISolutionFactory<T>> extends AbstractAlgorithm<T,RandomSearchConfiguration<T,S>>{
 	
 	/**
 	 * 
@@ -58,7 +58,7 @@ public class RandomSearch<T extends IRepresentation> extends AbstractAlgorithm<T
 	 * @throws InvalidConfigurationException the invalid configuration exception
 	 * @throws InvalidEvaluationFunctionInputDataException 
 	 */
-	public RandomSearch(RandomSearchConfiguration<T> configuration) throws Exception {
+	public RandomSearch(RandomSearchConfiguration<T,S> configuration) throws Exception {
 		super(configuration);
 	}
 
@@ -77,7 +77,7 @@ public class RandomSearch<T extends IRepresentation> extends AbstractAlgorithm<T
 		IRandomNumberGenerator randomGenerator = configuration.getRandomNumberGenerator();
 		ISolutionSet<T> newSolutionSet = new SolutionSet<T>(NUMBER_OF_SOLUTIONS);
 		IEvaluationFunction<T> evaluationFunction = configuration.getEvaluationFunction();
-		boolean isMaximization = evaluationFunction.isMaximization();
+//		boolean isMaximization = evaluationFunction.isMaximization();
 		ISolutionFactory<T> solutionFactory = configuration.getSolutionFactory();
 
 		ISolution<T> newSolution = solutionFactory.generateSolution(randomGenerator);
@@ -115,11 +115,8 @@ public class RandomSearch<T extends IRepresentation> extends AbstractAlgorithm<T
 
 	@Override
 	public IAlgorithm<T> deepCopy() throws InvalidConfigurationException, Exception {
-		RandomSearchConfiguration<T> randomSearchConfigurationCopy = configuration.deepCopy();
-		return new RandomSearch<T>(randomSearchConfigurationCopy);
+		RandomSearchConfiguration<T,S> randomSearchConfigurationCopy = configuration.deepCopy();
+		return new RandomSearch<T,S>(randomSearchConfigurationCopy);
 	}
-
-
-
 
 }

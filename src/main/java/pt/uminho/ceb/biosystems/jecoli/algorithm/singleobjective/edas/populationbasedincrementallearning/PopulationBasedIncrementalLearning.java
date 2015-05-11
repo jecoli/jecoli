@@ -1,7 +1,6 @@
 package pt.uminho.ceb.biosystems.jecoli.algorithm.singleobjective.edas.populationbasedincrementallearning;
 
 import java.util.List;
-import java.util.Random;
 import java.util.TreeSet;
 
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.AbstractAlgorithm;
@@ -11,9 +10,12 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.controller
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.configuration.InvalidConfigurationException;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.evaluationfunction.IEvaluationFunction;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.randomnumbergenerator.IRandomNumberGenerator;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.linear.ILinearRepresentation;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.set.SetRepresentation;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.*;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolution;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolutionFactory;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolutionSet;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.Solution;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.SolutionSet;
 
 /**
  * Created by ptiago on 05-01-2015.

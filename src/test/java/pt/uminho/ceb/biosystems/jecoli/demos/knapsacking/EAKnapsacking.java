@@ -36,7 +36,6 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.reproductio
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.reproduction.permutation.PermutationNonAdjacentSwapMutation;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.reproduction.permutation.PermutationOnePtCrossover;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.selection.RankingSelection;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.selection.TournamentSelection;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.randomnumbergenerator.DefaultRandomNumberGenerator;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.randomnumbergenerator.IRandomNumberGenerator;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.IRepresentation;

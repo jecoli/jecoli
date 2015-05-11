@@ -26,8 +26,6 @@ import java.io.Serializable;
 
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.randomnumbergenerator.IRandomNumberGenerator;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.linear.AbstractLinearRepresentationFactory;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.linear.ILinearRepresentation;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolution;
 
 
 // TODO: Auto-generated Javadoc

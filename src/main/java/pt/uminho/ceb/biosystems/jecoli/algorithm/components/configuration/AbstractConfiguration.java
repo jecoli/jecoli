@@ -190,6 +190,7 @@ public abstract class AbstractConfiguration<T extends IRepresentation> implement
     
     public void setEvaluationFunction(IEvaluationFunction<T> evaluationFunction) {
         this.evaluationFunction = evaluationFunction;
+        this.setNumberOfObjectives(evaluationFunction.getNumberOfObjectives());
     }
 
     

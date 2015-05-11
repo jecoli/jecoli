@@ -4,7 +4,6 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.randomnumbergenerato
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.linear.AbstractVariableSizeRepresentationFactory;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.linear.ILinearRepresentation;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.linear.ILinearRepresentationFactory;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolutionSet;
 
 public class RealValueVariableSizeRepresentationFactory extends AbstractVariableSizeRepresentationFactory<Double>{
 	/**

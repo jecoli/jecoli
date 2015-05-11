@@ -23,7 +23,6 @@
 package pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.reproduction.set;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.TreeSet;
 

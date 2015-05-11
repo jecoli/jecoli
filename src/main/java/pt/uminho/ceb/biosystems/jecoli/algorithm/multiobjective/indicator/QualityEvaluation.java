@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import pt.uminho.ceb.biosystems.jecoli.algorithm.multiobjective.MOUtils;
 import jmetal.qualityIndicator.GeneralizedSpread;
 import jmetal.qualityIndicator.GenerationalDistance;
 import jmetal.qualityIndicator.InvertedGenerationalDistance;
 import jmetal.qualityIndicator.Spread;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.multiobjective.MOUtils;
 
 
 /**

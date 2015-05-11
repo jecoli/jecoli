@@ -1,7 +1,6 @@
 package pt.uminho.ceb.biosystems.jecoli.algorithm.components.evaluationfunction;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.IRepresentation;

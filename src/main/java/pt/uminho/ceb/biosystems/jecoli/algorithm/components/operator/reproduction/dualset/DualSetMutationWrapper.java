@@ -3,11 +3,9 @@ package pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.reproducti
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
-import java.util.Vector;
 
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.IReproductionOperator;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.reproduction.set.AbstractSetMutationOperator;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.reproduction.set.SetRandomMutation;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.randomnumbergenerator.IRandomNumberGenerator;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.dualset.DualSetRepresentation;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.dualset.DualSetRepresentationFactory;

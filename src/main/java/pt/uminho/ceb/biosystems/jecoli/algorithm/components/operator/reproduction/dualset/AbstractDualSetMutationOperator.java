@@ -24,7 +24,6 @@ package pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.reproducti
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Vector;
 
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.IReproductionOperator;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.InvalidNumberOfInputSolutionsException;

@@ -17,8 +17,6 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.statistics.Statistic
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.terminationcriteria.ITerminationCriteria;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.terminationcriteria.InvalidNumberOfIterationsException;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.terminationcriteria.IterationTerminationCriteria;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.tracker.EvolutionTrackerFile;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.tracker.IEvolutionTracker;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.multiobjective.archive.plotting.Plot2DGUI;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.multiobjective.spea2.SPEA2;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.multiobjective.spea2.SPEA2Configuration;

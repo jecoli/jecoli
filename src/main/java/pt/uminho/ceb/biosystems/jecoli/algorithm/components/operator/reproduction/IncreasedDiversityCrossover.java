@@ -2,7 +2,10 @@ package pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.reproducti
 
 import java.util.List;
 
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.*;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.IReproductionOperator;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.InvalidNumberOfInputSolutionsException;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.InvalidNumberOfOutputSolutionsException;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.ReproductionOperatorType;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.randomnumbergenerator.IRandomNumberGenerator;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.IRepresentation;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolution;

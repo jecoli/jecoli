@@ -1,8 +1,6 @@
 package pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.controller;
 
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.AlgorithmState;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.configuration.IConfiguration;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.IOperator;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.IReproductionOperator;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.container.IOperatorContainer;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.IRepresentation;

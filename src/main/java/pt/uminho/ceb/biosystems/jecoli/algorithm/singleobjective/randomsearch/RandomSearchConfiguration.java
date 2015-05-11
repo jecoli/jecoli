@@ -32,25 +32,25 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.IRepr
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolutionFactory;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.statistics.StatisticsConfiguration;
 
-// TODO: Auto-generated Javadoc
+//TODO: Auto-generated Javadoc
 /**
- * The Class RandomSearchConfiguration.
- */
-public class RandomSearchConfiguration<T extends IRepresentation> extends AbstractConfiguration<T> {
+* The Class RandomSearchConfiguration.
+*/
+public class RandomSearchConfiguration<T extends IRepresentation, S extends ISolutionFactory<T>> extends AbstractConfiguration<T> {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	/** The solution factory. */
-	protected ISolutionFactory<T> solutionFactory;
+	protected S solutionFactory;
 
 	/**
 	 * Gets the solution factory.
 	 * 
 	 * @return the solution factory
 	 */
-	public ISolutionFactory<T> getSolutionFactory() {
+	public S getSolutionFactory() {
 		return solutionFactory;
 	}
 
@@ -59,7 +59,7 @@ public class RandomSearchConfiguration<T extends IRepresentation> extends Abstra
 	 * 
 	 * @param solutionFactory the new solution factory
 	 */
-	public void setSolutionFactory(ISolutionFactory<T> solutionFactory){
+	public void setSolutionFactory(S solutionFactory){
 		this.solutionFactory = solutionFactory;
 	}
 
@@ -81,11 +81,11 @@ public class RandomSearchConfiguration<T extends IRepresentation> extends Abstra
 		this.statisticsConfiguration = statisticsConfiguration;
 	}
 
-	public RandomSearchConfiguration<T> deepCopy() throws Exception {
-		RandomSearchConfiguration<T> configurationCopy = new RandomSearchConfiguration<T>();
+	public RandomSearchConfiguration<T,S> deepCopy() throws Exception {
+		RandomSearchConfiguration<T,S> configurationCopy = new RandomSearchConfiguration<T,S>();
 		configurationCopy.setTerminationCriteria(terminationCriteria.deepCopy());
 		configurationCopy.setEvaluationFunction(evaluationFunction.deepCopy());
-		configurationCopy.setSolutionFactory(solutionFactory.deepCopy());
+		configurationCopy.setSolutionFactory((S) solutionFactory.deepCopy());
 		configurationCopy.setUID(new String(UID));
 		
 		configurationCopy.setProblemBaseDirectory(new String(problemBaseDirectory));
@@ -100,7 +100,5 @@ public class RandomSearchConfiguration<T extends IRepresentation> extends Abstra
 		configurationCopy.setAlgorithmResultWriterList(algorithmResultWriterListCopy);
 		return configurationCopy;
 	}
-
-
 
 }

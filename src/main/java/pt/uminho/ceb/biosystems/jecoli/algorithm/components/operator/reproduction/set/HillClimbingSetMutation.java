@@ -1,9 +1,5 @@
 package pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.reproduction.set;
 
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.operator.IReproductionOperator;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.randomnumbergenerator.IRandomNumberGenerator;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.set.ISetRepresentation;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.set.ISetRepresentationFactory;
 
 /**
  * Created by ptiago on 22-12-2014.
