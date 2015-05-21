@@ -8,13 +8,18 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.IAlgorithm
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.IRepresentation;
 
 /**
- * @author pmaia_import
- *
+ * 
+ * 
+ * 
+ * @author pmaia
+ * @date 2012
+ * @version 
+ * @since
  */
 public class NumFunctionEvaluationsListenerHybridTerminationCriteria extends NumberOfFunctionEvaluationsTerminationCriteria implements TerminationListener{
 	
 	
-	private static final long serialVersionUID = 2766119342079800499L;
+	private static final long serialVersionUID = 1L;
 
 	protected boolean terminationFlag = false;
 
