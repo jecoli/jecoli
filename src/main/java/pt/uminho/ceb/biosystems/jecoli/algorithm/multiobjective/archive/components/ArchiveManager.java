@@ -21,6 +21,14 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.multiobjective.archive.sorting.
 import pt.uminho.ceb.biosystems.jecoli.algorithm.multiobjective.archive.sorting.SolutionRepresentationSorter;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.multiobjective.archive.trimming.ITrimmingFunction;
 
+/**
+ * 
+ * @author pmaia
+ * @version 
+ * @since
+ * @param <E>
+ * @param <T>
+ */
 public class ArchiveManager<E extends Comparable<E>, T extends IElementsRepresentation<E>> implements IAlgorithmStateListener, IEvaluationFunctionListener<T> {
 	
 	protected int							MAXIMUM_ARCHIVE_SIZE	= 200;
