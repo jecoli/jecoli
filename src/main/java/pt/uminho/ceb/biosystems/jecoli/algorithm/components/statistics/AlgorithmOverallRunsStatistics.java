@@ -1,25 +1,25 @@
 /**
-* Copyright 2009,
-* CCTC - Computer Science and Technology Center
-* IBB-CEB - Institute for Biotechnology and  Bioengineering - Centre of Biological Engineering
-* University of Minho
-*
-* This is free software: you can redistribute it and/or modify
-* it under the terms of the GNU Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* This code is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU Public License for more details.
-*
-* You should have received a copy of the GNU Public License
-* along with this code.  If not, see <http://www.gnu.org/licenses/>.
-* 
-* Created inside the SysBio Research Group <http://sysbio.di.uminho.pt/>
-* University of Minho
-*/
+ * Copyright 2009,
+ * CCTC - Computer Science and Technology Center
+ * IBB-CEB - Institute for Biotechnology and Bioengineering - Centre of Biological Engineering
+ * University of Minho
+ *
+ * This is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This code is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Public License for more details.
+ *
+ * You should have received a copy of the GNU Public License
+ * along with this code. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ * Created inside the SysBio Research Group <http://sysbio.di.uminho.pt/>
+ * University of Minho
+ */
 package pt.uminho.ceb.biosystems.jecoli.algorithm.components.statistics;
 
 import java.io.Serializable;
@@ -36,12 +36,11 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolutionCo
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolutionSet;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.SolutionCellContainer;
 
-
 // TODO: Auto-generated Javadoc
 /**
  * The Class AlgorithmOverallRunsStatistics.
  */
-public class AlgorithmOverallRunsStatistics<T extends IRepresentation> implements Serializable{
+public class AlgorithmOverallRunsStatistics<T extends IRepresentation> implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -56,16 +55,16 @@ public class AlgorithmOverallRunsStatistics<T extends IRepresentation> implement
 	 * 
 	 * @param algorithm the algorithm
 	 * @param algorithmRunStatisticsList the algorithm run statistics list
-	 * 
+	 * 			
 	 * @throws InvalidStatisticsParameterException the invalid statistics parameter exception
 	 */
-	public AlgorithmOverallRunsStatistics(IAlgorithm<T> algorithm,List<IAlgorithmResult<T>> algorithmRunStatisticsList) throws InvalidStatisticsParameterException {
-		if(algorithm == null)
+	public AlgorithmOverallRunsStatistics(IAlgorithm<T> algorithm, List<IAlgorithmResult<T>> algorithmRunStatisticsList) throws InvalidStatisticsParameterException {
+		if (algorithm == null)
 			throw new InvalidStatisticsParameterException("algorithm == NULL");
-		
-		if(algorithmRunStatisticsList.size() < 0)
+			
+		if (algorithmRunStatisticsList.size() < 0)
 			throw new InvalidStatisticsParameterException("numberOfRuns < 0");
-		
+			
 		this.algorithm = algorithm;
 		algorithmResultList = algorithmRunStatisticsList;
 	}
@@ -87,13 +86,13 @@ public class AlgorithmOverallRunsStatistics<T extends IRepresentation> implement
 	public IAlgorithm<T> getAlgorithm() {
 		return algorithm;
 	}
-
+	
 	/**
 	 * Gets the number of objectives.
 	 * 
 	 * @return the number of objectives
 	 */
-	public int getNumberOfObjectives(){
+	public int getNumberOfObjectives() {
 		IConfiguration<T> configuration = algorithm.getConfiguration();
 		int numberOfObjectives = configuration.getNumberOfObjectives();
 		return numberOfObjectives;
@@ -104,32 +103,20 @@ public class AlgorithmOverallRunsStatistics<T extends IRepresentation> implement
 	 * 
 	 * @return the overall scalar fitness run statistics
 	 */
-	public OverallRunStatistics getOverallScalarFitnessRunStatistics(){
+	public OverallRunStatistics getOverallScalarFitnessRunStatistics() {
 		//double maxValue = Double.NEGATIVE_INFINITY;
 		//double minValue = Double.POSITIVE_INFINITY;
 		
-		double bestValue = 0;
+		double bestValue = Double.NEGATIVE_INFINITY;
 		double meanValue = 0;
 		
-		if(algorithm.getConfiguration().getEvaluationFunction().isMaximization())
-			bestValue = Double.NEGATIVE_INFINITY;
-		else bestValue = Double.POSITIVE_INFINITY;
-		
-		for(int i = 0; i < algorithmResultList.size();i++){
-			IAlgorithmResult<T> algorithmResult =algorithmResultList.get(i); 
+		for (int i = 0; i < algorithmResultList.size(); i++) {
+			IAlgorithmResult<T> algorithmResult = algorithmResultList.get(i);
 			IAlgorithmStatistics<T> runStatistics = algorithmResult.getAlgorithmStatistics();
 			
 			double currentBestValue;
-			if(algorithm.getConfiguration().getEvaluationFunction().isMaximization())
-			{
-				currentBestValue = runStatistics.getRunMaxScalarFitnessValue();
-				bestValue = Math.max(currentBestValue, bestValue);
-			}
-			else 
-			{
-				currentBestValue = runStatistics.getRunMinScalarFitnessValue();
-				bestValue = Math.min(currentBestValue, bestValue);
-			}
+			currentBestValue = runStatistics.getRunMaxScalarFitnessValue();
+			bestValue = Math.max(currentBestValue, bestValue);
 			
 			meanValue += currentBestValue;
 			
@@ -142,81 +129,78 @@ public class AlgorithmOverallRunsStatistics<T extends IRepresentation> implement
 		meanValue /= algorithmResultList.size();
 		
 		double stdDev = calculateStdDev(meanValue);
-	
-		return new OverallRunStatistics(bestValue,meanValue,stdDev);
+		
+		return new OverallRunStatistics(bestValue, meanValue, stdDev);
 	}
 	
 	/**
 	 * Calculate std dev.
 	 * 
 	 * @param meanValue the mean value
-	 * 
+	 * 			
 	 * @return the double
 	 */
 	protected double calculateStdDev(double meanValue) {
 		double stdDev = 0;
 		
-		for(IAlgorithmResult<T> algorithmResult:algorithmResultList){
+		for (IAlgorithmResult<T> algorithmResult : algorithmResultList) {
 			IAlgorithmStatistics<T> runStatistics = algorithmResult.getAlgorithmStatistics();
 			double currentValue = 0;
-			if(algorithm.getConfiguration().getEvaluationFunction().isMaximization())
-				currentValue = runStatistics.getRunMaxScalarFitnessValue();
-			else currentValue = runStatistics.getRunMinScalarFitnessValue();
-			double differenceValue = currentValue-meanValue;
-			stdDev += Math.pow(differenceValue,2);
+			currentValue = runStatistics.getRunMaxScalarFitnessValue();
+			double differenceValue = currentValue - meanValue;
+			stdDev += Math.pow(differenceValue, 2);
 		}
 		stdDev /= algorithmResultList.size();
 		return Math.sqrt(stdDev);
 	}
-
+	
 	/**
 	 * Gets the best solution for each run.
 	 * 
 	 * @return the best solution for each run
 	 */
-	public List<ISolution<T>> getBestSolutionForEachRun(){
+	public List<ISolution<T>> getBestSolutionForEachRun() {
 		List<ISolution<T>> bestSolutionList = new ArrayList<ISolution<T>>();
 		
-		for(int i = 0; i < algorithmResultList.size();i++){
+		for (int i = 0; i < algorithmResultList.size(); i++) {
 			IAlgorithmResult<T> algorithmResult = algorithmResultList.get(i);
 			ISolutionContainer<T> solutionContainer = algorithmResult.getSolutionContainer();
-			boolean isMaximization = algorithm.getConfiguration().getEvaluationFunction().isMaximization();
-			SolutionCellContainer<T> container = solutionContainer.getBestSolutionCellContainer(isMaximization);
+			SolutionCellContainer<T> container = solutionContainer.getBestSolutionCellContainer(true);
 			ISolution<T> solution = container.getSolution();
 			bestSolutionList.add(solution);
-		 }
+		}
 		
 		return bestSolutionList;
 	}
-
+	
 	/**
 	 * Adds the solutions to list.
 	 * 
 	 * @param solutionSet the solution set
 	 * @param bestSolutionList the best solution list
 	 */
-	protected void addSolutionsToList(ISolutionSet<T> solutionSet,	List<ISolution<T>> bestSolutionList) {
-		for(ISolution<T> solution:bestSolutionList)
+	protected void addSolutionsToList(ISolutionSet<T> solutionSet, List<ISolution<T>> bestSolutionList) {
+		for (ISolution<T> solution : bestSolutionList)
 			solutionSet.add(solution);
 	}
-
+	
 	/**
 	 * Gets the run statistics.
 	 * 
 	 * @param objectivePosition the objective position
-	 * 
+	 * 			
 	 * @return the run statistics
 	 */
-	public IAlgorithmStatistics<T> getRunStatistics(int objectivePosition){
-		IAlgorithmResult<T> algorithmResult =  algorithmResultList.get(objectivePosition);
+	public IAlgorithmStatistics<T> getRunStatistics(int objectivePosition) {
+		IAlgorithmResult<T> algorithmResult = algorithmResultList.get(objectivePosition);
 		return algorithmResult.getAlgorithmStatistics();
 	}
-
+	
 	/**
 	 * Gets the objective overall run statistics.
 	 * 
 	 * @param objectivePosition the objective position
-	 * 
+	 * 			
 	 * @return the objective overall run statistics
 	 */
 	public OverallRunStatistics getObjectiveOverallRunStatistics(int objectivePosition) {
@@ -224,28 +208,17 @@ public class AlgorithmOverallRunsStatistics<T extends IRepresentation> implement
 		//double minValue = Double.POSITIVE_INFINITY;
 		double meanValue = 0;
 		
-		double bestValue = 0;
-
-		if(algorithm.getConfiguration().getEvaluationFunction().isMaximization())
-			bestValue = Double.NEGATIVE_INFINITY;
-		else bestValue = Double.POSITIVE_INFINITY;
+		double bestValue = Double.NEGATIVE_INFINITY;
+		;
 		
-		for(int i = 0; i < algorithmResultList.size();i++){
-			IAlgorithmResult<T> algorithmResult =algorithmResultList.get(i); 
+		for (int i = 0; i < algorithmResultList.size(); i++) {
+			IAlgorithmResult<T> algorithmResult = algorithmResultList.get(i);
 			IAlgorithmStatistics<T> runStatistics = algorithmResult.getAlgorithmStatistics();
 			
 			double currentBestValue;
-			if(algorithm.getConfiguration().getEvaluationFunction().isMaximization())
-			{
-				currentBestValue = runStatistics.getRunObjectiveMaxFitnessValue(objectivePosition);
-				bestValue = Math.max(currentBestValue, bestValue);
-			}
-			else 
-			{
-				currentBestValue = runStatistics.getRunObjectiveMinFitnessValue(objectivePosition);
-				bestValue = Math.min(currentBestValue, bestValue);
-			}
-
+			currentBestValue = runStatistics.getRunObjectiveMaxFitnessValue(objectivePosition);
+			bestValue = Math.max(currentBestValue, bestValue);
+			
 			meanValue += currentBestValue;
 			
 //			double currentMaxValue = runStatistics.getRunObjectiveMaxFitnessValue(objectivePosition);
@@ -258,9 +231,9 @@ public class AlgorithmOverallRunsStatistics<T extends IRepresentation> implement
 		meanValue /= algorithmResultList.size();
 		
 		double stdDev = calculateStdDev(meanValue);
-	
-		return new OverallRunStatistics(bestValue,meanValue,stdDev);
+		
+		return new OverallRunStatistics(bestValue, meanValue, stdDev);
 		//return new OverallRunStatistics(maxValue,minValue,meanValue,stdDev);
 	}
-
+	
 }

@@ -44,7 +44,7 @@ public class FonsecaEvaluationFunction<T extends IRepresentation> extends Abstra
 	 * @param isMaximization the is maximization
 	 */
 	public FonsecaEvaluationFunction(boolean isMaximization) {
-		super(isMaximization);
+		super();
 	}
 
 	/* (non-Javadoc)

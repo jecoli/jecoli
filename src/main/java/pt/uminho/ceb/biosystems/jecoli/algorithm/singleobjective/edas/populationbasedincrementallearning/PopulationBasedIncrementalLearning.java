@@ -55,7 +55,6 @@ public class PopulationBasedIncrementalLearning extends AbstractAlgorithm<SetRep
                                                                  ISolutionSet<SetRepresentation<Integer>> solutionSet) throws Exception {
 
         IEvaluationFunction<SetRepresentation<Integer>> evaluationFunction = configuration.getEvaluationFunction();
-        boolean isMaximization = evaluationFunction.isMaximization();
         double learningRate = configuration.getLearningRate();
         int numberOfSelectedSolutions = configuration.getNumberOfSolutionsToSelect();
 
@@ -67,7 +66,7 @@ public class PopulationBasedIncrementalLearning extends AbstractAlgorithm<SetRep
         evaluationFunction.evaluate(newSolutionSet);
         algorithmState.incrementCurrentIterationNumberOfFunctionEvaluations(newSolutionSet.getNumberOfSolutions());
         //OrderSolutionList;SelectHigherSolution
-        List<ISolution<SetRepresentation<Integer>>> orderedSolutionList = computeOrderedSolutionList(isMaximization,numberOfSelectedSolutions,newSolutionSet);
+        List<ISolution<SetRepresentation<Integer>>> orderedSolutionList = computeOrderedSolutionList(true,numberOfSelectedSolutions,newSolutionSet);
         //UpdateVector based on higher solutions
         double[] newProbabilityVector = computeNewProbabilityVector(learningRate,geneProbabilityVector,orderedSolutionList);
         configuration.setProbabilityVector(newProbabilityVector);

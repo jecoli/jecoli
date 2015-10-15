@@ -166,12 +166,11 @@ public class MOSA<T extends IRepresentation, S extends ISolutionFactory<T>> exte
 		updateState(algorithmState,solutionSet);
 		
 		IEvaluationFunction<T> evaluationFunction = configuration.getEvaluationFunction();
-		boolean isMaximization = evaluationFunction.isMaximization();
 		ISolutionSet<T> newGeneration = new SolutionSet<T>();
 		
 		ISolutionSet<T> union = ((MOSAAlgorithmState<T>)algorithmState).getArchive().union(solutionSet);
-		MOUtils.assignSelectionValue(union, isMaximization);
-		SolutionSet<T> newArchive = this.environmentalSelection(union, configuration.getMaximumArchiveSize(), isMaximization);
+		MOUtils.assignSelectionValue(union, true);
+		SolutionSet<T> newArchive = this.environmentalSelection(union, configuration.getMaximumArchiveSize(), true);
 		updateArchiveState((MOSAAlgorithmState<T>)algorithmState,newArchive);
 		
 		newGeneration = anneal(algorithmState,newArchive);
@@ -184,7 +183,6 @@ public class MOSA<T extends IRepresentation, S extends ISolutionFactory<T>> exte
 		int numberOfAcceptedMoves = 0;
 		int numberOfRejectedMoves = 0;
 		IEvaluationFunction<?> evaluationFunction = configuration.getEvaluationFunction();
-		boolean isMaximization = evaluationFunction.isMaximization();
 		
 		int currSolIndex = random.nextInt(solutionSet.getNumberOfSolutions());
 		ISolution<T> currentSolution = solutionSet.getSolution(currSolIndex);
@@ -212,10 +210,7 @@ public class MOSA<T extends IRepresentation, S extends ISolutionFactory<T>> exte
 				double randomNumber = Math.random();
 				double acceptSolutionProbability = 0; 
 				
-				if(isMaximization) 
-					acceptSolutionProbability = annealingSchedule.caculateAcceptSolutionProbability(currentSolutionFitnessValue,trialSolutionFitnessValue);
-				else
-					acceptSolutionProbability = annealingSchedule.caculateAcceptSolutionProbability(trialSolutionFitnessValue,currentSolutionFitnessValue);
+				acceptSolutionProbability = annealingSchedule.caculateAcceptSolutionProbability(currentSolutionFitnessValue,trialSolutionFitnessValue);
 				
 				if (randomNumber < acceptSolutionProbability) {
 					
@@ -285,7 +280,7 @@ public class MOSA<T extends IRepresentation, S extends ISolutionFactory<T>> exte
 		solutionSet.setSolution(currSolIndex, trialSolution);
 //		MOUtils.assignFitness(solutionSet, evaluationFunction.isMaximization());
 
-		double fit = MOUtils.computeZitzlerSelection4SingleSolution(trialSolution, solutionSet, evaluationFunction.isMaximization());
+		double fit = MOUtils.computeZitzlerSelection4SingleSolution(trialSolution, solutionSet, true);
 		trialSolution.setScalarFitnessValue(fit);
 		
 		// place old solution again and recompute fitnesses
@@ -303,14 +298,8 @@ public class MOSA<T extends IRepresentation, S extends ISolutionFactory<T>> exte
 	}
 	
 	protected boolean acceptSolution(double currentFitnessValue,double trialSolutionFitnessValue) {
-		IEvaluationFunction<?> evaluationFunction = configuration.getEvaluationFunction();
-		boolean isMaximization = evaluationFunction.isMaximization();
-		boolean isCurrentFitnessBigger =  (currentFitnessValue > trialSolutionFitnessValue);
-		
-		if(isMaximization)
-			return !isCurrentFitnessBigger;
-		
-		return isCurrentFitnessBigger;
+		boolean isCurrentFitnessBigger =  (currentFitnessValue > trialSolutionFitnessValue);		
+		return !isCurrentFitnessBigger;		
 	}
 	
 	/**

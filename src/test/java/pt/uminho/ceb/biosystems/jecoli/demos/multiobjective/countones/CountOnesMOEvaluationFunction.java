@@ -43,7 +43,7 @@ public class CountOnesMOEvaluationFunction<T extends IRepresentation> extends Ab
 	 * @param isMaximization the is maximization
 	 */
 	public CountOnesMOEvaluationFunction(boolean isMaximization) {
-		super(isMaximization);
+		super();
 	}
 
 	/* (non-Javadoc)

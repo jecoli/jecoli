@@ -257,14 +257,13 @@ public class CellularGeneticAlgorithm<T extends IRepresentation,S extends ISolut
 	protected ISolution<T> processSolution(AlgorithmState<T> algorithmState, int index,ISolution<T> solution,ISolutionSet<T> solutionSet,NeighborhoodType neighborhoodType) throws Exception {
 		SolutionSet<T> neighborhoodSolutionSet = createNeighborhoodSet(index,solution,solutionSet,neighborhoodType);
 		IEvaluationFunction<T> evaluationFunction = configuration.getEvaluationFunction();
-		boolean isMaximization = evaluationFunction.isMaximization();
 		ISelectionOperator<T> selectionOperator = configuration.getSelectionOperator();
 		IReproductionOperator<T,S> reproductionOperator = configuration.selectReproductionOperator();
 		
 		
 		int numberOfSolutionsToSelect = reproductionOperator.getNumberOfInputSolutions();
 		IRandomNumberGenerator randomNumberGenerator = configuration.getRandomNumberGenerator();
-		List<ISolution<T>> selectedSolutionsList = selectionOperator.selectSolutions(numberOfSolutionsToSelect,neighborhoodSolutionSet, isMaximization, randomNumberGenerator);
+		List<ISolution<T>> selectedSolutionsList = selectionOperator.selectSolutions(numberOfSolutionsToSelect,neighborhoodSolutionSet, true, randomNumberGenerator);
 		S solutionFactory = configuration.getSolutionFactory();
 		List<ISolution<T>> reproductionSolutionList = reproductionOperator.apply(selectedSolutionsList,solutionFactory,randomNumberGenerator);
 	    evaluationFunction.evaluateSingleSolution(reproductionSolutionList.get(0));

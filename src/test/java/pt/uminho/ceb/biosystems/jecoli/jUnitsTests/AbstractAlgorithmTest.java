@@ -22,7 +22,6 @@ public abstract class AbstractAlgorithmTest<T extends IRepresentation,F extends 
 
 	protected IAlgorithm<T> algorithm;
 	
-	protected Boolean isMaximization;
 	protected Integer populationSize;
 	protected Integer numberOfGenerations;
 	
@@ -31,12 +30,10 @@ public abstract class AbstractAlgorithmTest<T extends IRepresentation,F extends 
 	@Test
 	public void testSolutions(List<ISolution<T>> actualResults,List<ISolution<T>> expectedSolutions) 
 								throws InvalidNumberOfInputSolutionsException, InvalidNumberOfOutputSolutionsException {
-		assertTrue("Acutal results size is bigger than expected solutions size.",actualResults.size() <= expectedSolutions.size());
-		IConfiguration<T> configuration = algorithm.getConfiguration();
-		boolean isMaximization = configuration.getEvaluationFunction().isMaximization();
+		assertTrue("Actual results size is bigger than expected solutions size.",actualResults.size() <= expectedSolutions.size());
 		
 		for(ISolution<T> solution:actualResults)
-			assertTrue(this.testName+": Is Maximization: "+isMaximization,verifyExpectedSolutionList(solution, expectedSolutions));
+			assertTrue(this.testName+": Is Maximization: "+true,verifyExpectedSolutionList(solution, expectedSolutions));
 		
 	}
 	
@@ -52,14 +49,6 @@ public abstract class AbstractAlgorithmTest<T extends IRepresentation,F extends 
 		return false;
 	}
 
-
-	public Boolean getIsMaximization() {
-		return isMaximization;
-	}
-
-	public void setIsMaximization(Boolean isMaximization) {
-		this.isMaximization = isMaximization;
-	}
 
 	public Integer getPopulationSize() {
 		return populationSize;
@@ -96,11 +85,10 @@ public abstract class AbstractAlgorithmTest<T extends IRepresentation,F extends 
 	protected void testSolution(ISolutionContainer<T> solutionContainer)
 	{
 		IConfiguration<T> configuration = algorithm.getConfiguration();
-		boolean isMaximization = configuration.getEvaluationFunction().isMaximization();
 		
 		try {
 			List<ISolution<T>> actualList = new ArrayList<ISolution<T>>();
-			actualList.add(solutionContainer.getBestSolutionCellContainer(isMaximization).getSolution());
+			actualList.add(solutionContainer.getBestSolutionCellContainer(true).getSolution());
 	
 			testSolutions(actualList, this.expectedSolutions);
 		} 
@@ -123,7 +111,6 @@ public abstract class AbstractAlgorithmTest<T extends IRepresentation,F extends 
 		if(this.expectedSolutions == null) throw new Exception(this.testName+": Validation error due to a missing set in ExpectedPopulation atribute.");
 		if(this.populationSize == null) throw new Exception(this.testName+": Validation error due to a missing set in PopulationSize atribute.");
 		if(this.numberOfGenerations == null) throw new Exception(this.testName+": Validation error due to a missing set in NumberOfGenerations atribute.");
-		if(this.isMaximization == null) throw new Exception(this.testName+": Validation error due to a missing set in IsMaximization atribute.");
 		
 	}
 

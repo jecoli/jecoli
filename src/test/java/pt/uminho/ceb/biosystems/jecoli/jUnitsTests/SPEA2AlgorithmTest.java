@@ -77,7 +77,7 @@ public class SPEA2AlgorithmTest extends AbstractAlgorithmTest<ILinearRepresentat
 
 	@Override
 	public void setTestValues() {
-		setCountingOnesConfigure(this.isMaximization);
+		setCountingOnesConfigure(true);
 		
 	}
 

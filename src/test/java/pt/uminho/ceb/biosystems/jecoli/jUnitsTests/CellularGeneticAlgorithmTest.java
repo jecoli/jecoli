@@ -79,7 +79,7 @@ public class CellularGeneticAlgorithmTest extends AbstractAlgorithmTest<ILinearR
 	
 	@Override
 	public void setTestValues() {
-		setCountingOnesConfigure(this.isMaximization);
+		setCountingOnesConfigure(true);
 	}
 	
 	@Override

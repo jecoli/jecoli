@@ -37,7 +37,7 @@ public class SimulatedAnnealingTest extends AbstractAlgorithmTest<ILinearReprese
 			
 			SimulatedAnnealingConfiguration<ILinearRepresentation<Boolean>, BinaryRepresentationFactory> algorithmConfiguration = new SimulatedAnnealingConfiguration<ILinearRepresentation<Boolean>, BinaryRepresentationFactory>();
 			
-			IEvaluationFunction<ILinearRepresentation<Boolean>> evaluationFunction = new AlgorithmCountingOnesPopulation(this.isMaximization);
+			IEvaluationFunction<ILinearRepresentation<Boolean>> evaluationFunction = new AlgorithmCountingOnesPopulation(true);
 			
 			algorithmConfiguration.setRandomNumberGenerator(this.randomNumberGenerator);
 			algorithmConfiguration.setProblemBaseDirectory("nullDirectory");

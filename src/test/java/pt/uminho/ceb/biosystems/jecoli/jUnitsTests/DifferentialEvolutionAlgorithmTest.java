@@ -25,7 +25,7 @@ public class DifferentialEvolutionAlgorithmTest extends AbstractAlgorithmTest<IL
 	{
 		this.testName = "DifferentialEvolutionAlgorithm";
 		this.randomNumberGenerator = new DummyRandomNumberGenerator();
-		this.isMaximization = false;
+//		this.isMaximization = false; OOPSIEEE!!
 	}
 	
 	@Override
