@@ -39,7 +39,7 @@ public interface IEvaluationFunction<T extends IRepresentation> extends IDeepCop
      * 
      * @return true, if is maximization
      */
-    boolean isMaximization();
+//    boolean isMaximization();
     
     /**
      * Evaluate.
