@@ -10,11 +10,9 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.multiobjective.archive.aggregat
 
 public abstract class AbstractMultiobjectiveEvaluationFunction<T extends IRepresentation> implements IEvaluationFunction<T> {
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 608090232509317733L;
 	
+	private static final long serialVersionUID = 1L;
+
 	protected List<IEvaluationFunctionListener<T>> listeners = null;
 	
 	protected IAggregationFunction fitnessAggregation = null;
