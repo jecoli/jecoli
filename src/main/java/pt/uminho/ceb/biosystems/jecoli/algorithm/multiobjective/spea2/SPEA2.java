@@ -135,7 +135,7 @@ public class SPEA2<T extends IRepresentation, S extends ISolutionFactory<T>> ext
 	@Deprecated
 	private void updateLastState(SPEA2AlgorithmState<T> algorithmState, ISolutionSet<T> archive) {
 		ISolutionContainer<T> container = new SolutionContainer<T>(configuration.getMaximumArchiveSize());
-		container.addSpecificSolutions(algorithmState.getSolutionSet(), algorithmState.getCurrentIteration(), configuration.getEvaluationFunction().isMaximization());
+		container.addSpecificSolutions(algorithmState.getSolutionSet(), algorithmState.getCurrentIteration(), true);
 		algorithmState.getAlgorithmResult().setSolutionContainer(container);
 		
 	}
@@ -153,19 +153,18 @@ public class SPEA2<T extends IRepresentation, S extends ISolutionFactory<T>> ext
 	public ISolutionSet<T> iteration(AlgorithmState<T> algorithmState, ISolutionSet<T> solutionSet) throws Exception {
 		
 		IEvaluationFunction<T> evaluationFunction = configuration.getEvaluationFunction();
-		boolean isMaximization = evaluationFunction.isMaximization();
 		ISolutionSet<T> newGeneration = new SolutionSet<T>();
 		
 		ISolutionSet<T> union = ((SPEA2AlgorithmState<T>) algorithmState).getArchive().union(solutionSet);
-		MOUtils.assignSelectionValue(union, isMaximization);
+		MOUtils.assignSelectionValue(union, true);
 		updateState(algorithmState, solutionSet);
-		SolutionSet<T> newArchive = this.environmentalSelection(union, configuration.getMaximumArchiveSize(), isMaximization);
+		SolutionSet<T> newArchive = this.environmentalSelection(union, configuration.getMaximumArchiveSize(), true);
 		updateArchiveState((SPEA2AlgorithmState<T>) algorithmState, newArchive);
 		
 		RecombinationParameters recombinationParameters = configuration.getRecombinationParameters();
 		int offSpringSize = recombinationParameters.getOffspringSize();
 		
-		serialRecombination(((SPEA2AlgorithmState<T>) algorithmState).getArchive(), newGeneration, isMaximization, offSpringSize);
+		serialRecombination(((SPEA2AlgorithmState<T>) algorithmState).getArchive(), newGeneration, true, offSpringSize);
 		
 		evaluationFunction.evaluate(newGeneration);
 		

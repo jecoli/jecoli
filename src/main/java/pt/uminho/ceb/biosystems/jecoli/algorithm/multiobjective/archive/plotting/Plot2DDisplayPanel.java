@@ -111,15 +111,10 @@ public class Plot2DDisplayPanel<T extends IRepresentation> extends JPanel implem
 	private void updateDataSingle() {
 
 		AlgorithmState<T> state = alg.getAlgorithmState();
-		boolean isMax = alg.getConfiguration().getEvaluationFunction().isMaximization();
 		if(state!=null){
 			ISolutionSet<T> solset = state.getSolutionSet();
 			List<ISolution<T>> sollist = null;
-
-			if(isMax)
-				sollist = solset.getHighestValuedSolutions(1);
-			else
-				sollist = solset.getLowestValuedSolutions(1);
+			sollist = solset.getHighestValuedSolutions(1);
 
 			if(sollist.size()>0){
 				values.add(sollist.get(0).getScalarFitnessValue());

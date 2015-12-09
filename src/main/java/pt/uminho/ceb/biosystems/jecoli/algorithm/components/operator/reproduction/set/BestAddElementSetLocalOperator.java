@@ -43,9 +43,7 @@ public class BestAddElementSetLocalOperator extends AbstractSetLocalOperator<Int
 				this.evalFunction.evaluateSingleSolution(newSolution);
 				this.numberFunctionEvaluations++;
 				double newFitness = newSolution.getScalarFitnessValue();
-				if ( (evalFunction.isMaximization() && newFitness > bestFitness) || 
-					 (!evalFunction.isMaximization() && newFitness < bestFitness) )
-				{
+				if (newFitness > bestFitness) {
 					this.hasImproved = true;
 					bestSolution = newSolution;
 					bestFitness = newFitness;

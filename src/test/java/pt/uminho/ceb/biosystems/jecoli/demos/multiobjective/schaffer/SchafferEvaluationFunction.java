@@ -43,7 +43,7 @@ public class SchafferEvaluationFunction<T extends IRepresentation> extends Abstr
 	 * @param isMaximization the is maximization
 	 */
 	public SchafferEvaluationFunction(boolean isMaximization) {
-		super(isMaximization);
+		super();
 	}
 
 	/* (non-Javadoc)

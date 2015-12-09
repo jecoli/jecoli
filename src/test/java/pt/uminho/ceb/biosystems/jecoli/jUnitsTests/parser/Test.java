@@ -310,8 +310,6 @@ public class Test implements TestConstants {
       jj_consume_token(-1);
       throw new ParseException();
     }
-    isMaximization = Boolean.valueOf(t.image);
-    ((SimulatedAnnealingTest)tests).setIsMaximization(isMaximization);
     jj_consume_token(SIZE);
     jj_consume_token(HALFCOMMA);
     t = jj_consume_token(DIGIT);
@@ -419,8 +417,6 @@ public class Test implements TestConstants {
       jj_consume_token(-1);
       throw new ParseException();
     }
-    isMaximization = Boolean.valueOf(t.image);
-    ((CellularGeneticAlgorithmTest)tests).setIsMaximization(isMaximization);
     jj_consume_token(SIZE);
     jj_consume_token(HALFCOMMA);
     t = jj_consume_token(DIGIT);
@@ -507,8 +503,6 @@ public class Test implements TestConstants {
       jj_consume_token(-1);
       throw new ParseException();
     }
-    isMaximization = Boolean.valueOf(t.image);
-    ((EvolutionaryAlgorithmTest)tests).setIsMaximization(isMaximization);
     jj_consume_token(SIZE);
     jj_consume_token(HALFCOMMA);
     t = jj_consume_token(DIGIT);

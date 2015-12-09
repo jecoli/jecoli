@@ -47,7 +47,7 @@ public class KursaweEvaluationFunction<T extends IRepresentation> extends Abstra
 	 * @param isMaximization the is maximization
 	 */
 	public KursaweEvaluationFunction(boolean isMaximization) {
-		super(isMaximization);
+		super();
 	}
 
 	/* (non-Javadoc)

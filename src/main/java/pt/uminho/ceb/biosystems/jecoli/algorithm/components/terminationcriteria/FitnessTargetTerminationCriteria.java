@@ -53,19 +53,13 @@ public class FitnessTargetTerminationCriteria implements ITerminationCriteria{
 	}
 	
 	public <T extends IRepresentation> boolean verifyAlgorithmTermination(IAlgorithm<T> algorithm, AlgorithmState<T> algorithmState){
-		IConfiguration<T> configuration = algorithm.getConfiguration();
-		IEvaluationFunction<T> evaluationFunction = configuration.getEvaluationFunction();
-		boolean isMaximization = evaluationFunction.isMaximization();
 		ISolutionSet<T> solutionSet = algorithmState.getSolutionSet();
-		ISolution<T> bestSolution = getBestSolution(isMaximization, solutionSet);
+		ISolution<T> bestSolution = getBestSolution(true, solutionSet);
 		double bestSolutionFitness = bestSolution.getScalarFitnessValue();
 		
-		if(isMaximization && bestSolutionFitness >= fitnessTarget)
-			return true;
+		return (bestSolutionFitness >= fitnessTarget);
+	}
 
-        return !isMaximization && bestSolutionFitness <= fitnessTarget;
-
-    }
 	
 	/**
 	 * Gets the best solution.

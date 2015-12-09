@@ -35,7 +35,7 @@ public class EvolutionaryAlgorithmTest extends AbstractAlgorithmTest<ILinearRepr
 		try {
 			EvolutionaryConfiguration<ILinearRepresentation<Boolean>,BinaryRepresentationFactory> algorithmConfiguration = new EvolutionaryConfiguration<ILinearRepresentation<Boolean>,BinaryRepresentationFactory>();
 			
-			IEvaluationFunction<ILinearRepresentation<Boolean>> evaluationFunction = new AlgorithmCountingOnesPopulation(isMaximization);
+			IEvaluationFunction<ILinearRepresentation<Boolean>> evaluationFunction = new AlgorithmCountingOnesPopulation(true);
 			
 			algorithmConfiguration.setRandomNumberGenerator(this.randomNumberGenerator);
 			algorithmConfiguration.setProblemBaseDirectory("nullDirectory");

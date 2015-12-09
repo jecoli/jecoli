@@ -33,7 +33,7 @@ public class ZitzlerTruncation<T extends IRepresentation> implements ITrimmingFu
 
 			//NOTE: REVISIT THIS IN THE FUTURE!!!
 			//		evaluationFunction.evaluate(original);		
-			MOUtils.assignSelectionValue(original, evaluationFunction.isMaximization());
+			MOUtils.assignSelectionValue(original, true);
 
 			SolutionSet<T> nondominated = new SolutionSet<T>();
 			nondominated.setMaxNumberOfSolutions(size);

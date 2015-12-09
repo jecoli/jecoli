@@ -48,16 +48,16 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.SolutionSet
  */
 public class SimulatedAnnealing<T extends IRepresentation, S extends ISolutionFactory<T>> extends AbstractAlgorithm<T, SimulatedAnnealingConfiguration<T, S>> {
 	
-	private static final long	serialVersionUID	= 8986765002502088453L;
+	private static final long serialVersionUID = 8986765002502088453L;
 	
 	/** The debug. */
-	private boolean				debug				= false;
+	private boolean debug = false;
 	
 	/**
 	 * Instantiates a new simulated annealing.
 	 * 
 	 * @param configuration the configuration
-	 * 
+	 * 			
 	 * @throws InvalidConfigurationException the invalid configuration exception
 	 * @throws InvalidEvaluationFunctionInputDataException
 	 */
@@ -68,8 +68,9 @@ public class SimulatedAnnealing<T extends IRepresentation, S extends ISolutionFa
 	public ISolutionSet<T> initialize() throws Exception {
 		// algorithmState.initializeState();
 		IRandomNumberGenerator randomGenerator = configuration.getRandomNumberGenerator();
-		if (debug) System.out.println("initializing ...");
-		
+		if (debug)
+			System.out.println("initializing ...");
+			
 		ISolutionFactory<T> solutionFactory = configuration.getSolutionFactory();
 		IAnnealingSchedule annealingSchedule = configuration.getAnnelingSchedule();
 		IEvaluationFunction<T> evaluationFunction = configuration.getEvaluationFunction();
@@ -81,7 +82,7 @@ public class SimulatedAnnealing<T extends IRepresentation, S extends ISolutionFa
 			solutionSet = solutionFactory.generateSolutionSet(1, randomGenerator);
 		else
 			solutionSet = configuration.getInitialPopulation();
-		
+			
 		// SetRepresentation genome =
 		// (SetRepresentation)(solutionSet.getSolution(0).getRepresentation());
 		// System.out.println("Size = " + genome.getNumberOfElements());
@@ -96,10 +97,12 @@ public class SimulatedAnnealing<T extends IRepresentation, S extends ISolutionFa
 		}
 		algorithmState.incrementCurrentIterationNumberOfFunctionEvaluations(solutionSet.getNumberOfSolutions());
 		
-		if (debug) System.out.println("end initializing ...");
-		
-		if (debug) System.out.println("Tamanho INICIAL: " + solutionSet.getNumberOfSolutions());
-		
+		if (debug)
+			System.out.println("end initializing ...");
+			
+		if (debug)
+			System.out.println("Tamanho INICIAL: " + solutionSet.getNumberOfSolutions());
+			
 		return solutionSet;
 	}
 	
@@ -107,11 +110,11 @@ public class SimulatedAnnealing<T extends IRepresentation, S extends ISolutionFa
 	 * Creates the trial solution.
 	 * 
 	 * @param algorithmState
-	 * 
+	 * 			
 	 * @param currentSolution the current solution
-	 * 
+	 * 			
 	 * @return the i solution
-	 * 
+	 * 		
 	 * @throws InvalidNumberOfInputSolutionsException the invalid number of
 	 *             input solutions exception
 	 * @throws InvalidNumberOfOutputSolutionsException the invalid number of
@@ -119,45 +122,53 @@ public class SimulatedAnnealing<T extends IRepresentation, S extends ISolutionFa
 	 */
 	public ISolution<T> createTrialSolution(AlgorithmState<T> algorithmState, ISolution<T> currentSolution) throws InvalidNumberOfInputSolutionsException, InvalidNumberOfOutputSolutionsException {
 		
-		if (debug) System.out.println("creating trial solution ...");
-		
+		if (debug)
+			System.out.println("creating trial solution ...");
+			
 		IEvaluationFunction<T> evaluationFunction = configuration.getEvaluationFunction();
 		
-		if (debug) System.out.println("selecting mutation jecoliunittest.operators.operator ...");
-		
+		if (debug)
+			System.out.println("selecting mutation jecoliunittest.operators.operator ...");
+			
 		IReproductionOperator<T, S> reproductionOperator = configuration.selectMutationOperator();
 		
-		if (debug) System.out.println("done selecting mutation jecoliunittest.operators.operator ...");
-		
+		if (debug)
+			System.out.println("done selecting mutation jecoliunittest.operators.operator ...");
+			
 		List<ISolution<T>> selectedSolutionList = new ArrayList<ISolution<T>>(0);
 		selectedSolutionList.add(currentSolution);
 		
-		if (debug) System.out.println("added current solution; applying rep op ...");
-		
+		if (debug)
+			System.out.println("added current solution; applying rep op ...");
+			
 		IRandomNumberGenerator randomNumberGenerator = configuration.getRandomNumberGenerator();
 		
 		S solutionFactory = configuration.getSolutionFactory();
 		
 		List<ISolution<T>> trialSolutionList = reproductionOperator.apply(selectedSolutionList, solutionFactory, randomNumberGenerator);
 		
-		if (debug) System.out.println("done applying rep op ...");
-		
+		if (debug)
+			System.out.println("done applying rep op ...");
+			
 		ISolution<T> trialSolution = trialSolutionList.get(0);
 		
-		if (debug) System.out.println("evaluating ...");
-		
+		if (debug)
+			System.out.println("evaluating ...");
+			
 		evaluationFunction.evaluateSingleSolution(trialSolution);
 		
 		if (_tracker != null) {
 			_tracker.keepSolution(algorithmState.getCurrentIteration(), reproductionOperator.getClass().getSimpleName(), trialSolution, selectedSolutionList);
 		}
 		
-		if (debug) System.out.println("done evaluating ...");
-		
+		if (debug)
+			System.out.println("done evaluating ...");
+			
 		algorithmState.incrementCurrentIterationNumberOfFunctionEvaluations();
 		
-		if (debug) System.out.println("end creating trial solution ...");
-		
+		if (debug)
+			System.out.println("end creating trial solution ...");
+			
 		return trialSolution;
 	}
 	
@@ -169,74 +180,82 @@ public class SimulatedAnnealing<T extends IRepresentation, S extends ISolutionFa
 	public ISolutionSet<T> iteration(AlgorithmState<T> algorithmState, ISolutionSet<T> solutionSet) throws Exception {
 		IRandomNumberGenerator randomGenerator = configuration.getRandomNumberGenerator();
 		
-		if (debug) System.out.println("starting iteration ...");
-		
+		if (debug)
+			System.out.println("starting iteration ...");
+			
 		ISolutionSet<T> newSolutionSet = new SolutionSet<T>();
 		IAnnealingSchedule annealingSchedule = configuration.getAnnelingSchedule();
 		int numberOfAcceptedMoves = 0;
 		int numberOfRejectedMoves = 0;
 		IEvaluationFunction<T> evaluationFunction = configuration.getEvaluationFunction();
-		boolean isMaximization = evaluationFunction.isMaximization();
 		
 		ISolution<T> currentSolution = solutionSet.getSolution(0);
 		
 		while (!annealingSchedule.isEquilibriumState(numberOfAcceptedMoves, numberOfRejectedMoves)) {
 			
-			if (debug) System.out.println("starting trial cycle ...");
-			
+			if (debug)
+				System.out.println("starting trial cycle ...");
+				
 			ISolution<T> trialSolution = createTrialSolution(algorithmState, currentSolution);
 			double currentSolutionFitnessValue = currentSolution.getScalarFitnessValue();
 			double trialSolutionFitnessValue = trialSolution.getScalarFitnessValue();
 			
 			if (acceptSolution(currentSolutionFitnessValue, trialSolutionFitnessValue)) {
 				
-				if (debug) System.out.println("accepting solution ...");
-				
+				if (debug)
+					System.out.println("accepting solution ...");
+					
 				currentSolution = trialSolution;
 				numberOfAcceptedMoves++;
 				
-				if (debug) System.out.println("number of accepted: " + numberOfAcceptedMoves);
-				
+				if (debug)
+					System.out.println("number of accepted: " + numberOfAcceptedMoves);
+					
 			} else {
 				double randomNumber = randomGenerator.nextDouble();
 				double acceptSolutionProbability = 0;
 				
-				if (isMaximization)
-					acceptSolutionProbability = annealingSchedule.caculateAcceptSolutionProbability(currentSolutionFitnessValue, trialSolutionFitnessValue);
-				else
-					acceptSolutionProbability = annealingSchedule.caculateAcceptSolutionProbability(trialSolutionFitnessValue, currentSolutionFitnessValue);
+				acceptSolutionProbability = annealingSchedule.caculateAcceptSolutionProbability(currentSolutionFitnessValue, trialSolutionFitnessValue);
 				
 				if (randomNumber < acceptSolutionProbability) {
 					
-					if (debug) System.out.println("accepting worse solution ...");
-					
+					if (debug)
+						System.out.println("accepting worse solution ...");
+						
 					currentSolution = trialSolution;
 					numberOfAcceptedMoves++;
 					
-					if (debug) System.out.println("number of accepted: " + numberOfAcceptedMoves);
+					if (debug)
+						System.out.println("number of accepted: " + numberOfAcceptedMoves);
 				} else {
-					if (debug) System.out.println("rejecting solution ...");
+					if (debug)
+						System.out.println("rejecting solution ...");
 					numberOfRejectedMoves++;
-					if (debug) System.out.println("number of rejected: " + numberOfRejectedMoves);
+					if (debug)
+						System.out.println("number of rejected: " + numberOfRejectedMoves);
 				}
 			}
 			// annealingSchedule.getFitnessFunctionData(currentSolution.getScalarFitnessValue());
 			// // NAO FAZ NADA !!!
 		}
 		
-		if(_tracker!=null)
+		if (_tracker != null)
 			_tracker.flush();
-		
-		if (debug) System.out.println("ended trial cycle ...");
-		
+			
+		if (debug)
+			System.out.println("ended trial cycle ...");
+			
 		newSolutionSet.add(currentSolution);
 		
-		if (debug) System.out.println("added current solution; calculating new temp");
-		
+		if (debug)
+			System.out.println("added current solution; calculating new temp");
+			
 		double newTemperature = annealingSchedule.calculateNewTemperature();
-		if (debug) System.out.println("newTemperature..."+ newTemperature);
-		if (debug) System.out.println("ending iteration ...");
-		
+		if (debug)
+			System.out.println("newTemperature..." + newTemperature);
+		if (debug)
+			System.out.println("ending iteration ...");
+			
 		return newSolutionSet;
 	}
 	
@@ -245,19 +264,11 @@ public class SimulatedAnnealing<T extends IRepresentation, S extends ISolutionFa
 	 * 
 	 * @param currentFitnessValue the current fitness value
 	 * @param trialSolutionFitnessValue the trial solution fitness value
-	 * 
+	 * 			
 	 * @return true, if successful
 	 */
-	public boolean acceptSolution(double currentFitnessValue, double trialSolutionFitnessValue) {
-		IEvaluationFunction<T> evaluationFunction = configuration.getEvaluationFunction();
-		boolean isMaximization = evaluationFunction.isMaximization();
-		boolean isCurrentFitneesBigger = (currentFitnessValue >= trialSolutionFitnessValue);
-		
-		if(isMaximization) 
-            return (currentFitnessValue <= trialSolutionFitnessValue);
-
-		
-		return isCurrentFitneesBigger;
+	public boolean acceptSolution(double currentFitnessValue, double trialSolutionFitnessValue) {		
+		return (currentFitnessValue <= trialSolutionFitnessValue);	
 	}
 	
 	@Override

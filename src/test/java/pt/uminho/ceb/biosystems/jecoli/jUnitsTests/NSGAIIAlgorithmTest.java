@@ -22,7 +22,6 @@ public class NSGAIIAlgorithmTest extends AbstractAlgorithmTest<ILinearRepresenta
 	public NSGAIIAlgorithmTest(boolean isMaximization)
 	{
 		this.testName = "NSGAIIAlgorithm";
-		this.isMaximization = isMaximization;
 	}
 	
 	protected void setCountingOnesConfigure(boolean isMaximization)
@@ -72,7 +71,7 @@ public class NSGAIIAlgorithmTest extends AbstractAlgorithmTest<ILinearRepresenta
 
 	@Override
 	public void setTestValues() {
-		setCountingOnesConfigure(this.isMaximization);
+		setCountingOnesConfigure(true);
 		
 	}
 

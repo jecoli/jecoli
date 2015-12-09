@@ -122,13 +122,12 @@ public class EvolutionaryAlgorithm<T extends IRepresentation, S extends ISolutio
 		int elitismValue = recombinationParameters.getElitismValue();
 		int offSpringSize = recombinationParameters.getOffspringSize();
 		IEvaluationFunction<T> evaluationFunction = configuration.getEvaluationFunction();
-		boolean isMaximization = evaluationFunction.isMaximization();
 		
-		if (elitismValue > 0) selectElitistIndividuals(currentSolutionSet, newGeneration, isMaximization, elitismValue);
+		if (elitismValue > 0) selectElitistIndividuals(currentSolutionSet, newGeneration, true, elitismValue);
 		
-		if (numberOfSurvivorIndividuals > 0) selectSurvivorIndividuals(currentSolutionSet, newGeneration, isMaximization, numberOfSurvivorIndividuals);
+		if (numberOfSurvivorIndividuals > 0) selectSurvivorIndividuals(currentSolutionSet, newGeneration, true, numberOfSurvivorIndividuals);
 		
-		if (offSpringSize > 0) selectReproductionIndividuals(currentSolutionSet, newGeneration, isMaximization, offSpringSize);
+		if (offSpringSize > 0) selectReproductionIndividuals(currentSolutionSet, newGeneration, true, offSpringSize);
 		
 		if (configuration.getRefreshEvalutation()) {
 			evaluationFunction.evaluate(newGeneration);
@@ -203,9 +202,7 @@ public class EvolutionaryAlgorithm<T extends IRepresentation, S extends ISolutio
 		for (ISolution<T> selectedIndividual : selectedIndividualList)
 			steadyStateSolutionSet.add(selectedIndividual);
 		
-		if (configuration.getEvaluationFunction().isMaximization()) return steadyStateSolutionSet.getHighestValuedSolutions(newIndividualList.size());
-		
-		return steadyStateSolutionSet.getLowestValuedSolutions(newIndividualList.size());
+		return steadyStateSolutionSet.getHighestValuedSolutions(newIndividualList.size());		
 	}
 	
 	/**

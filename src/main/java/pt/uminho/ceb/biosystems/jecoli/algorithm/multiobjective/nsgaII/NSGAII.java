@@ -121,7 +121,7 @@ public class NSGAII<T extends IRepresentation, S extends ISolutionFactory<T>> ex
 //            it++;
         }        
         
-        Ranker<T> ranker = new Ranker<T>(solutionSet,evaluationFunction.isMaximization());
+        Ranker<T> ranker = new Ranker<T>(solutionSet,true);
 		solutionSet = ranker.getSubFront(0); //pff :P
 		
 		 /** set the final solution set to equal the archive */
@@ -156,7 +156,7 @@ public class NSGAII<T extends IRepresentation, S extends ISolutionFactory<T>> ex
 		container.addSpecificSolutions(
 				algorithmState.getSolutionSet(),
 				algorithmState.getCurrentIteration(),
-				configuration.getEvaluationFunction().isMaximization());
+				true);
 		algorithmState.getAlgorithmResult().setSolutionContainer(container);
 		
 	}
@@ -166,20 +166,19 @@ public class NSGAII<T extends IRepresentation, S extends ISolutionFactory<T>> ex
 	public ISolutionSet<T> iteration(AlgorithmState<T> algorithmState, ISolutionSet<T> solutionSet) throws Exception{
 		
 		IEvaluationFunction<T> evaluationFunction = configuration.getEvaluationFunction();		
-		boolean isMaximization = evaluationFunction.isMaximization();
 		
 		ISolutionSet<T> newGeneration = new SolutionSet<T>();					
 		
 		RecombinationParameters recombinationParameters = configuration.getRecombinationParameters();	
 		int offSpringSize = recombinationParameters.getOffspringSize();
 		
-		serialRecombination(solutionSet,newGeneration,isMaximization,offSpringSize);		
+		serialRecombination(solutionSet,newGeneration,true,offSpringSize);		
 		evaluationFunction.evaluate(newGeneration);
 		updateState(algorithmState,solutionSet);
 		
 		ISolutionSet<T> union = solutionSet.union(newGeneration);
 		
-		Ranker<T> ranker = new Ranker<T>(union, isMaximization);
+		Ranker<T> ranker = new Ranker<T>(union, true);
 		
 		int remain = solutionSet.getNumberOfSolutions();
 		
@@ -190,7 +189,7 @@ public class NSGAII<T extends IRepresentation, S extends ISolutionFactory<T>> ex
 		front = ranker.getSubFront(index);
 		
 		while((remain > 0) && (remain >= front.getNumberOfSolutions())){
-			MOUtils.assignCrowdingDistance(front.getListOfSolutions(), isMaximization);
+			MOUtils.assignCrowdingDistance(front.getListOfSolutions(), true);
 			
 			for(int k = 0; k < front.getNumberOfSolutions(); k++)
 				solutionSet.add(front.getSolution(k));
@@ -202,7 +201,7 @@ public class NSGAII<T extends IRepresentation, S extends ISolutionFactory<T>> ex
 		}
 		
 		if(remain > 0){
-			MOUtils.assignCrowdingDistance(front.getListOfSolutions(), isMaximization);
+			MOUtils.assignCrowdingDistance(front.getListOfSolutions(), true);
 			front.sort(new CrowdingComparator<ISolution<T>>(),true,false);
 			
 			for(int k = 0; k< remain ; k++)
