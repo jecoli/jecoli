@@ -6,4 +6,6 @@ public interface IEvaluationFunctionListener<T extends IRepresentation> {
 	
 	void processEvaluationFunctionEvent(EvaluationFunctionEvent<T> event);
 
+	void setMaxValue(int numericTerminationValue);
+
 }

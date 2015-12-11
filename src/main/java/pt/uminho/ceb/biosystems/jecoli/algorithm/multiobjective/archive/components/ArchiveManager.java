@@ -450,5 +450,11 @@ public class ArchiveManager<E extends Comparable<E>, T extends IElementsRepresen
 	public void setMaximumArchiveSize(int maximumArchiveSize) {
 		MAXIMUM_ARCHIVE_SIZE = maximumArchiveSize;
 	}
+
+	@Override
+	public void setMaxValue(int numericTerminationValue) {
+		
+		
+	}
 	
 }
