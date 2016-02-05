@@ -4,7 +4,7 @@
 
   <groupId>pt.uminho.ceb.biosystems</groupId>
   <artifactId>jecoli</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.3-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>jecoli</name>
@@ -91,6 +91,10 @@
 	    <id>biosystems-releases</id>
 		<url>http://193.137.11.210/nexus/content/repositories/biosystems-releases</url>
 	</repository>
+	<snapshotRepository>
+		<id>biosystems-snapshots</id>
+		<url>http://193.137.11.210/nexus/content/repositories/biosystems-snapshots</url>
+	</snapshotRepository>
   </distributionManagement>
   
 </project>
