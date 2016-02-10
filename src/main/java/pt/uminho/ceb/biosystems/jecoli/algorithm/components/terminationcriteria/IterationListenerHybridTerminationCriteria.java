@@ -39,7 +39,7 @@ public class IterationListenerHybridTerminationCriteria extends IterationTermina
 	@Override
     public <T extends IRepresentation> boolean verifyAlgorithmTermination(IAlgorithm<T> algorithm, AlgorithmState<T> algorithmState) {
         
-        if (terminationFlag || (algorithmState.getCurrentIteration() > maxNumberOfIterations+1))
+        if (terminationFlag || (algorithmState.getCurrentIteration() >= maxNumberOfIterations+1))
             return true;
         
         return false;

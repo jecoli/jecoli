@@ -51,60 +51,59 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.tracker.IEvolutionTr
  */
 public abstract class AbstractAlgorithm<T extends IRepresentation, S extends IConfiguration<T>> implements
 		Serializable, IAlgorithm<T>, IDeepCopy {
-	
+		
 	private static final long				serialVersionUID				= 345261894136880451L;
-	
+																			
 	/** The Constant ITERATION_INCREMENT_EVENT. */
 	public static final String				ITERATION_INCREMENT_EVENT		= "iterationIncrement";
 	public static final String				EVALUATION_FUNCTION_INCREMENT	= "evaluationFunctionIncrement";
-	
+																			
 	/** The configuration. */
 	protected S								configuration;
-	
+											
 	/** The listener list. */
 	protected List<IAlgorithmStateListener>	listenerList;
-	
+											
 	protected AlgorithmState<T>				algorithmState;
-    protected AlgorithmController<T,S> algorithmController;
-	
+	protected AlgorithmController<T, S>		algorithmController;
+											
 	protected IEvolutionTracker<T>			_tracker						= null;
-	
+																			
 	/**
 	 * Instantiates a new abstract algorithm.
 	 * 
 	 * @param configuration
 	 *            the configuration
-	 * 
+	 * 			
 	 * @throws InvalidConfigurationException
 	 *             the invalid configuration exception
 	 * @throws InvalidEvaluationFunctionInputDataException
 	 */
 	public AbstractAlgorithm(
 			S configuration)
-			throws InvalidConfigurationException {
+					throws InvalidConfigurationException {
 		configuration.verifyConfiguration();
 		this.configuration = configuration;
 		listenerList = new ArrayList<IAlgorithmStateListener>();
 		this.algorithmState = new AlgorithmState<T>(this); //null;
-        algorithmController = new AlgorithmController<>();
+		algorithmController = new AlgorithmController<>();
 	}
-
-    public AbstractAlgorithm(
-            S configuration,
-            AlgorithmController<T,S> algorithmController)
-            throws InvalidConfigurationException {
-        configuration.verifyConfiguration();
-        this.configuration = configuration;
-        listenerList = new ArrayList<IAlgorithmStateListener>();
-        this.algorithmState = new AlgorithmState<T>(this); //null;
-        this.algorithmController = algorithmController;
-    }
+	
+	public AbstractAlgorithm(
+			S configuration,
+			AlgorithmController<T, S> algorithmController)
+					throws InvalidConfigurationException {
+		configuration.verifyConfiguration();
+		this.configuration = configuration;
+		listenerList = new ArrayList<IAlgorithmStateListener>();
+		this.algorithmState = new AlgorithmState<T>(this); //null;
+		this.algorithmController = algorithmController;
+	}
 	
 	public AbstractAlgorithm(
 			String filePath,
 			boolean resetListenerList)
-			throws
-            Exception {
+					throws Exception {
 		File algorithmStateFileDescriptor = new File(filePath);
 		FileInputStream fileInputStream = new FileInputStream(algorithmStateFileDescriptor);
 		ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
@@ -133,8 +132,8 @@ public abstract class AbstractAlgorithm<T extends IRepresentation, S extends ICo
 			
 			if ((saveStateIterationInterval > 0) && (currentNumberOfIterations % saveStateIterationInterval == 0))
 				saveCurrentState();
-
-            this.configuration = algorithmController.processAlgorithmState(algorithmState,configuration);//TODO Mudar Termination Criteria
+				
+			this.configuration = algorithmController.processAlgorithmState(algorithmState, configuration);//TODO Mudar Termination Criteria
 		}
 	}
 	
@@ -142,8 +141,8 @@ public abstract class AbstractAlgorithm<T extends IRepresentation, S extends ICo
 		configuration.verifyConfiguration();
 		
 		//if (algorithmState == null) { //TODO mudar a inicializacao do estado tirar o algorithm state de null
-			algorithmState = new AlgorithmState<T>(this);
-			runInitialization();
+		algorithmState = new AlgorithmState<T>(this);
+		runInitialization();
 		//}
 		
 		executeAlgorithmMainCycle();
@@ -166,7 +165,7 @@ public abstract class AbstractAlgorithm<T extends IRepresentation, S extends ICo
 	 * Run initialization.
 	 * 
 	 * @return the i solution set
-	 * 
+	 * 		
 	 * @throws Exception
 	 *             the exception
 	 */
@@ -203,9 +202,9 @@ public abstract class AbstractAlgorithm<T extends IRepresentation, S extends ICo
 	 *            TODO
 	 * @param solutionSet
 	 *            the solution set
-	 * 
+	 * 			
 	 * @return the i solution set
-	 * 
+	 * 		
 	 * @throws Exception
 	 *             the exception
 	 */
