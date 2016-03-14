@@ -115,6 +115,9 @@ public class SPEA2<T extends IRepresentation, S extends ISolutionFactory<T>> ext
 		algorithmState.initializeState();
 		ISolutionSet<T> solutionSet = initialize(algorithmState);
 		
+		algorithmState.setSolutionSet(solutionSet);
+		algorithmState.updateState(solutionSet);
+		
 		while (!terminationCriteria.verifyAlgorithmTermination(this, algorithmState)) {
 			ISolutionSet<T> newSolutionSet = iteration(algorithmState, solutionSet);
 			solutionSet = newSolutionSet;
