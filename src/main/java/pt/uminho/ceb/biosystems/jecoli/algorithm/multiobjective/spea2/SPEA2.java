@@ -116,10 +116,11 @@ public class SPEA2<T extends IRepresentation, S extends ISolutionFactory<T>> ext
 		ISolutionSet<T> solutionSet = initialize(algorithmState);
 		
 		algorithmState.setSolutionSet(solutionSet);
-		algorithmState.updateState(solutionSet);
-		
+		updateState(algorithmState, solutionSet);
+
 		while (!terminationCriteria.verifyAlgorithmTermination(this, algorithmState)) {
 			ISolutionSet<T> newSolutionSet = iteration(algorithmState, solutionSet);
+			updateState(algorithmState, newSolutionSet);
 			solutionSet = newSolutionSet;
 		}
 		
@@ -160,7 +161,6 @@ public class SPEA2<T extends IRepresentation, S extends ISolutionFactory<T>> ext
 		
 		ISolutionSet<T> union = ((SPEA2AlgorithmState<T>) algorithmState).getArchive().union(solutionSet);
 		MOUtils.assignSelectionValue(union, true);
-		updateState(algorithmState, solutionSet);
 		SolutionSet<T> newArchive = this.environmentalSelection(union, configuration.getMaximumArchiveSize(), true);
 		updateArchiveState((SPEA2AlgorithmState<T>) algorithmState, newArchive);
 		
