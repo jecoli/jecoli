@@ -37,6 +37,7 @@ import java.util.List;
 
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.IDeepCopy;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.controller.AlgorithmController;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.controller.IAlgorithmController;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.writer.IAlgorithmResultWriter;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.configuration.IConfiguration;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.configuration.InvalidConfigurationException;
@@ -65,7 +66,7 @@ public abstract class AbstractAlgorithm<T extends IRepresentation, S extends ICo
 	protected List<IAlgorithmStateListener>	listenerList;
 											
 	protected AlgorithmState<T>				algorithmState;
-	protected AlgorithmController<T, S>		algorithmController;
+	protected IAlgorithmController<T, S>		algorithmController;
 											
 	protected IEvolutionTracker<T>			_tracker						= null;
 																			
@@ -91,7 +92,7 @@ public abstract class AbstractAlgorithm<T extends IRepresentation, S extends ICo
 	
 	public AbstractAlgorithm(
 			S configuration,
-			AlgorithmController<T, S> algorithmController)
+			IAlgorithmController<T, S> algorithmController)
 					throws InvalidConfigurationException {
 		configuration.verifyConfiguration();
 		this.configuration = configuration;

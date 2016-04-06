@@ -28,7 +28,7 @@ import java.util.List;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.AbstractAlgorithm;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.AlgorithmState;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.IAlgorithm;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.controller.AlgorithmController;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.controller.IAlgorithmController;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.configuration.InvalidConfigurationException;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.evaluationfunction.IEvaluationFunction;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.evaluationfunction.InvalidEvaluationFunctionInputDataException;
@@ -61,7 +61,7 @@ public class EvolutionaryAlgorithm<T extends IRepresentation, S extends ISolutio
 		super(configuration);
 	}
 
-    public EvolutionaryAlgorithm(EvolutionaryConfiguration<T, S> configuration,AlgorithmController<T,EvolutionaryConfiguration<T, S>> algorithmController) throws InvalidConfigurationException {
+    public EvolutionaryAlgorithm(EvolutionaryConfiguration<T, S> configuration,IAlgorithmController<T, EvolutionaryConfiguration<T, S>> algorithmController) throws InvalidConfigurationException {
         super(configuration,algorithmController);
     }
 

@@ -6,7 +6,7 @@ import java.util.TreeSet;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.AbstractAlgorithm;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.AlgorithmState;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.IAlgorithm;
-import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.controller.AlgorithmController;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm.controller.IAlgorithmController;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.configuration.InvalidConfigurationException;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.evaluationfunction.IEvaluationFunction;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.randomnumbergenerator.IRandomNumberGenerator;
@@ -26,7 +26,7 @@ public class PopulationBasedIncrementalLearning extends AbstractAlgorithm<SetRep
         super(configuration);
     }
 
-    public PopulationBasedIncrementalLearning(PopulationBasedIncrementalLearningConfiguration configuration, AlgorithmController<SetRepresentation<Integer>, PopulationBasedIncrementalLearningConfiguration> algorithmController) throws InvalidConfigurationException {
+    public PopulationBasedIncrementalLearning(PopulationBasedIncrementalLearningConfiguration configuration, IAlgorithmController<SetRepresentation<Integer>, PopulationBasedIncrementalLearningConfiguration> algorithmController) throws InvalidConfigurationException {
         super(configuration, algorithmController);
     }
 
