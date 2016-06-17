@@ -49,7 +49,7 @@ public class KursaweSPEA2Test {
 			configuration.setPopulationSize(populationSize);
 			configuration.setMaximumArchiveSize(maximumArchiveSize);
 
-			int numberGenerations = 1000;
+			int numberGenerations = 10000;
 
 			ITerminationCriteria terminationCriteria;
 			terminationCriteria = new IterationTerminationCriteria(numberGenerations);
