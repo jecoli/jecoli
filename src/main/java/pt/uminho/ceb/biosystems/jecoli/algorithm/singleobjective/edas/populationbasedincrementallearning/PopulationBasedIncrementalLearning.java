@@ -51,7 +51,7 @@ public class PopulationBasedIncrementalLearning extends AbstractAlgorithm<SetRep
     }
 
     @Override
-    protected ISolutionSet<SetRepresentation<Integer>> iteration(AlgorithmState<SetRepresentation<Integer>> algorithmState,
+    public ISolutionSet<SetRepresentation<Integer>> iteration(AlgorithmState<SetRepresentation<Integer>> algorithmState,
                                                                  ISolutionSet<SetRepresentation<Integer>> solutionSet) throws Exception {
 
         IEvaluationFunction<SetRepresentation<Integer>> evaluationFunction = configuration.getEvaluationFunction();

@@ -45,6 +45,7 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.IRepr
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.solution.ISolutionSet;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.terminationcriteria.ITerminationCriteria;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.components.tracker.IEvolutionTracker;
+import pt.uminho.ceb.biosystems.jecoli.algorithm.parallel.globalPar.Parallel_Evaluation_Pool;
 
 /**
  * The Class AbstractAlgorithm.
@@ -69,6 +70,10 @@ public abstract class AbstractAlgorithm<T extends IRepresentation, S extends ICo
 	
 	protected IEvolutionTracker<T>			_tracker						= null;
 	
+	// NEW @Tiago Martins
+	public Parallel_Evaluation_Pool par_eval=null;
+	public long eval_time;
+	
 	/**
 	 * Instantiates a new abstract algorithm.
 	 * 
@@ -87,6 +92,19 @@ public abstract class AbstractAlgorithm<T extends IRepresentation, S extends ICo
 		listenerList = new ArrayList<IAlgorithmStateListener>();
 		this.algorithmState = new AlgorithmState<T>(this); //null;
         algorithmController = new AlgorithmController<>();
+	}
+	
+	// NEW @Tiago Martins
+	public AbstractAlgorithm(
+			S configuration, int nthreads)
+			throws InvalidConfigurationException {
+		configuration.verifyConfiguration();
+		this.configuration = configuration;
+		listenerList = new ArrayList<IAlgorithmStateListener>();
+		this.algorithmState = new AlgorithmState<T>(this); //null;
+        algorithmController = new AlgorithmController<>();
+        // NEW @Tiago Martins
+        this.par_eval = new Parallel_Evaluation_Pool(nthreads);//nthreads
 	}
 
     public AbstractAlgorithm(
@@ -136,6 +154,14 @@ public abstract class AbstractAlgorithm<T extends IRepresentation, S extends ICo
 
             this.configuration = algorithmController.processAlgorithmState(algorithmState,configuration);//TODO Mudar Termination Criteria
 		}
+		//NEW @Tiago Martins
+		terminate_par();
+		System.out.println("Total Evaluation Time (mili): " + eval_time/1000000);
+	}
+	
+	// NEW @Tiago Martins
+	public void terminate_par(){
+		if(par_eval!=null) par_eval.terminate();
 	}
 	
 	public IAlgorithmResult<T> run() throws Exception {
@@ -209,7 +235,8 @@ public abstract class AbstractAlgorithm<T extends IRepresentation, S extends ICo
 	 * @throws Exception
 	 *             the exception
 	 */
-	protected abstract ISolutionSet<T> iteration(AlgorithmState<T> algorithmState, ISolutionSet<T> solutionSet) throws Exception;
+	// COMMENT @Tiago Martins
+//	protected abstract ISolutionSet<T> iteration(AlgorithmState<T> algorithmState, ISolutionSet<T> solutionSet) throws Exception;
 	
 	public void updateState(AlgorithmState<T> algorithmState, ISolutionSet<T> solutionSet) {
 		algorithmState.updateState(solutionSet);

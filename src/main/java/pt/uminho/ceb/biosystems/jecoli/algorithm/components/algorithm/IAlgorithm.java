@@ -103,4 +103,9 @@ public interface IAlgorithm<T extends IRepresentation> extends IDeepCopy {
 	
 	void setEvolutionTracker(IEvolutionTracker<T> tracker);
 	
+	//NEW PAR Island Model @Tiago Martins
+	ISolutionSet<T> iteration(AlgorithmState<T> algorithmState, ISolutionSet<T> solutionSet) throws Exception;
+	
+	void terminate_par();
+	//ISolutionSet<T> runInitialization() throws Exception;
 }

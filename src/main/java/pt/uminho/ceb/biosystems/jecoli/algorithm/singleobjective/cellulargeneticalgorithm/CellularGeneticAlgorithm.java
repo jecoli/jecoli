@@ -79,7 +79,7 @@ public class CellularGeneticAlgorithm<T extends IRepresentation,S extends ISolut
 	
 
 	@Override
-	protected ISolutionSet<T> iteration(AlgorithmState<T> algorithmState, ISolutionSet<T> solutionSet) throws Exception {
+	public ISolutionSet<T> iteration(AlgorithmState<T> algorithmState, ISolutionSet<T> solutionSet) throws Exception {
 		IRandomNumberGenerator randomGenerator = configuration.getRandomNumberGenerator();
 		CellularAutomataType cellularAutomataType = configuration.getCellularAutomataType();
 		
