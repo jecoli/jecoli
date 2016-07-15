@@ -49,7 +49,7 @@ public abstract class AbstractMultiobjectiveEvaluationFunction<T extends IRepres
 			
 			for (int i = 0; i < fitnessValues.length; i++) {
 				if (fitnessValues[i] == null) {
-					fitnessValues[i] = Double.MIN_VALUE;
+					fitnessValues[i] = -Double.MAX_VALUE;
 					fitsOK = false;
 				}
 				
@@ -72,7 +72,7 @@ public abstract class AbstractMultiobjectiveEvaluationFunction<T extends IRepres
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			solution.setScalarFitnessValue(Double.MIN_VALUE);
+			solution.setScalarFitnessValue(-Double.MAX_VALUE);
 		}
 		
 		if (listeners != null && !listeners.isEmpty()) {

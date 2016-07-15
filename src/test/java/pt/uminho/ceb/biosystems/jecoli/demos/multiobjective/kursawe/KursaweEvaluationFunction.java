@@ -75,8 +75,8 @@ public class KursaweEvaluationFunction<T extends IRepresentation> extends Abstra
 	      f1 += (Math.pow(Math.abs(solutionRepresentation.getElementAt(var)),0.8) + 5.0 * Math.sin(Math.pow(solutionRepresentation.getElementAt(var),3.0)));
 	    } 
 	        
-	    fitnesses[0]=f0 * 1;
-	    fitnesses[1]=f1 * 1;
+	    fitnesses[0]=f0 * -1;
+	    fitnesses[1]=f1 * -1;
 	    
 		return fitnesses;		
 	}
