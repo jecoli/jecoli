@@ -7,10 +7,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import jmetal.qualityIndicator.GeneralizedSpread;
-import jmetal.qualityIndicator.GenerationalDistance;
-import jmetal.qualityIndicator.InvertedGenerationalDistance;
-import jmetal.qualityIndicator.Spread;
+import org.uma.jmetal.qualityindicator.impl.GeneralizedSpread;
+import org.uma.jmetal.qualityindicator.impl.GenerationalDistance;
+import org.uma.jmetal.qualityindicator.impl.InvertedGenerationalDistance;
+import org.uma.jmetal.qualityindicator.impl.Spread;
+import org.uma.jmetal.util.front.Front;
+
+import pt.uminho.ceb.biosystems.jecoli.algorithm.multiobjective.JMetalUtils;
 import pt.uminho.ceb.biosystems.jecoli.algorithm.multiobjective.MOUtils;
 
 
@@ -38,27 +41,34 @@ public class QualityEvaluation {
 	
 	public double evaluate(double[][] pareto,double[][] truepareto,int no) throws Exception{
 				
+		Front paretoFront = JMetalUtils.convertMatrixToFront(pareto);
+		Front trueParetoFront = JMetalUtils.convertMatrixToFront(truepareto);
 		switch(pi){
 			case GENERALIZED_SPREAD: {
-				GeneralizedSpread qualityIndicator = new GeneralizedSpread();
-				return qualityIndicator.generalizedSpread(pareto, truepareto, no);
+				GeneralizedSpread<?> qualityIndicator = new GeneralizedSpread<>(trueParetoFront);
+				return qualityIndicator.generalizedSpread(paretoFront, trueParetoFront);
+//				return qualityIndicator.generalizedSpread(pareto, truepareto, no);
 			}
 			case GENERATIONAL_DISTANCE: {
-				GenerationalDistance qualityIndicator = new GenerationalDistance();
-				return qualityIndicator.generationalDistance(pareto, truepareto, no);
+				GenerationalDistance<?> qualityIndicator = new GenerationalDistance<>(trueParetoFront);
+				return qualityIndicator.generationalDistance(paretoFront, trueParetoFront);
+//				return qualityIndicator.generationalDistance(pareto, truepareto, no);
 			}
 			case HYPERVOLUME: {
-				Hypervolume2 qualityIndicator = new Hypervolume2();
-				return qualityIndicator.hypervolume(pareto, truepareto, no);
+				return JMetalUtils.hypervolume(paretoFront, trueParetoFront);
 			}
 			case INVERTED_GENERATIONAL_DISTANCE: {
-				InvertedGenerationalDistance qualityIndicator = new InvertedGenerationalDistance();
-				return qualityIndicator.invertedGenerationalDistance(pareto, truepareto, no);				
+				InvertedGenerationalDistance<?> qualityIndicator = new InvertedGenerationalDistance<>(trueParetoFront);
+				return qualityIndicator.invertedGenerationalDistance(paretoFront, trueParetoFront);
+//				return qualityIndicator.invertedGenerationalDistance(pareto, truepareto, no);				
 			}
 			case SPREAD: {
-				if(no>2) throw new Exception("The SPREAD quality indicator (delta index) can only be used for bi-objective problems.");
-				Spread qualityIndicator = new Spread();
-				return qualityIndicator.spread(pareto, truepareto, 2);
+				if(no>2){
+					throw new Exception("The SPREAD quality indicator (delta index) can only be used for bi-objective problems.");
+				}
+				Spread<?> qualityIndicator = new Spread<>(trueParetoFront);
+				return qualityIndicator.spread(paretoFront, trueParetoFront);
+//				return qualityIndicator.spread(pareto, truepareto, 2);
 			}
 			case C_MEASURE:{
 				return MOUtils.cMeasure(pareto, truepareto);				
