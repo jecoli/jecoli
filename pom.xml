@@ -3,11 +3,12 @@
 
 	<groupId>pt.uminho.ceb.biosystems</groupId>
 	<artifactId>jecoli</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	
 	<name>jecoli</name>
 	<description>Java Evolutionary Computation Library</description>
+	<url>https://github.com/jecoli</url>
 	
 	<developers>
 		<developer>
@@ -54,6 +55,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+		<project.sign.skip>true</project.sign.skip>
 	</properties>
 	
 	<scm>
@@ -130,6 +132,9 @@
 						<goals>
 							<goal>sign</goal>
 						</goals>
+						<configuration>
+							<skip>${project.sign.skip}</skip>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
