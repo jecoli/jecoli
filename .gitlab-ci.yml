@@ -1,0 +1,56 @@
+image: maven:latest
+
+before_script:
+ # Install JFrog CLI
+  -  curl -fL https://getcli.jfrog.io | sh
+  # Configure Artifactory instance with JFrog CLI
+  - ./jfrog rt config --url=$ARTIFACTORY_URL --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASS
+  - ./jfrog rt c show
+  # Set the M2_HOME environment variable
+  - export M2_HOME=/usr/share/maven
+  # Replace the target SNAPSHOT repository name in the configuration.yml to the correct one.
+  - sed -i 's,SNAPSHOT_REPO_KEY,'"$SNAPSHOT_REPO_KEY"',g' configuration.yml
+  # Replace the target RELEASE repository name in the configuration.yml to the correct one.
+  - sed -i 's,RELEASE_REPO_KEY,'"$RELEASE_REPO_KEY"',g' configuration.yml
+  # Replace the JCENTER name in the configuration.yml to the correct one.
+  - sed -i 's,ARTIFACTORY_JCENTER_REPO_KEY,'"$ARTIFACTORY_JCENTER_REPO_KEY"',g' configuration.yml
+
+variables:
+  MAVEN_CLI_OPTS: "-B -Dmaven.test.skip=true"
+  
+stages:
+  - verify
+  - prepare
+  - release
+  
+maven_verify:
+  stage: verify
+  tags:
+    - maven
+  script:
+    - echo "VERIFY:"
+    - mvn verify
+ 
+maven_prepare:
+  stage: prepare
+  tags:
+    - maven
+  script:
+    - mvn $MAVEN_CLI_OPTS release:prepare
+  only:
+    - master
+
+maven_release:
+  stage: release
+  tags:
+    - maven
+    - artifactory
+  script:
+    # Run the MVN command
+    - ./jfrog rt mvn "clean install" configuration.yml --build-name=jecoli_gitlabci-maven-artifactory --build-number=$CI_JOB_ID
+    # Collect the environment variables
+    - ./jfrog rt bce jecoli_gitlabci-maven-artifactoryy $CI_JOB_ID
+    # Pass the build information to Artifactory
+    - ./jfrog rt bp jecoli_gitlabci-maven-artifactory $CI_JOB_ID
+  only:
+    - master
