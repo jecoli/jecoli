@@ -29,7 +29,7 @@ maven_verify:
     - maven
   script:
     - echo "VERIFY:"
-    - mvn verify
+    - mvn validate
  
 maven_prepare:
   stage: prepare
