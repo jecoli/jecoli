@@ -59,7 +59,7 @@
 	</properties>
 	
 	<scm>
-		<developerConnection>${project.scm.devcon}</developerConnection>
+		<developerConnection>scm:git:git@github.com:jecoli/jecoli.git</developerConnection>
 		<url>https://github.com/jecoli</url>
 	</scm>
 
