@@ -3,7 +3,7 @@
 
 	<groupId>pt.uminho.ceb.biosystems</groupId>
 	<artifactId>jecoli</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<packaging>jar</packaging>
 	
 	<name>jecoli</name>
@@ -61,7 +61,8 @@
 	<scm>
 		<developerConnection>scm:git:git@github.com:jecoli/jecoli.git</developerConnection>
 		<url>https://github.com/jecoli</url>
-	</scm>
+	  <tag>jecoli-1.0.1</tag>
+  </scm>
 
 	<dependencies>
 		<dependency>
