@@ -88,7 +88,7 @@ public interface IConfiguration<T extends IRepresentation> extends IDeepCopy  {
     
     /**
      * Verify configuration.
-     * @throws InvalidEvaluationFunctionInputDataException 
+     * @throws InvalidConfigurationException when and invalid configuration is detected  
      */
     void verifyConfiguration() throws InvalidConfigurationException;
     
