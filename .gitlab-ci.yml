@@ -1,56 +1,42 @@
 image: maven:latest
 
-before_script:
- # Install JFrog CLI
-  -  curl -fL https://getcli.jfrog.io | sh
-  # Configure Artifactory instance with JFrog CLI
-  - ./jfrog rt config --url=$ARTIFACTORY_URL --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASS
-  - ./jfrog rt c show
-  # Set the M2_HOME environment variable
-  - export M2_HOME=/usr/share/maven
-  # Replace the target SNAPSHOT repository name in the configuration.yml to the correct one.
-  - sed -i 's,SNAPSHOT_REPO_KEY,'"$SNAPSHOT_REPO_KEY"',g' configuration.yml
-  # Replace the target RELEASE repository name in the configuration.yml to the correct one.
-  - sed -i 's,RELEASE_REPO_KEY,'"$RELEASE_REPO_KEY"',g' configuration.yml
-  # Replace the JCENTER name in the configuration.yml to the correct one.
-  - sed -i 's,ARTIFACTORY_JCENTER_REPO_KEY,'"$ARTIFACTORY_JCENTER_REPO_KEY"',g' configuration.yml
-
-variables:
-  MAVEN_CLI_OPTS: "-B -Dmaven.test.skip=true"
-  
 stages:
-  - verify
-  - prepare
-  - release
-  
-maven_verify:
-  stage: verify
-  tags:
-    - maven
-  script:
-    - echo "VERIFY:"
-    - mvn validate
+ - test
+ - deploy
  
-maven_prepare:
-  stage: prepare
-  tags:
+maven test:
+  stage: test
+  tags: 
     - maven
   script:
-    - mvn $MAVEN_CLI_OPTS release:prepare
-  only:
-    - master
+    - mvn test -Dmaven.test.skip=true
 
-maven_release:
-  stage: release
+maven_deploy:
+  stage: deploy
   tags:
     - maven
     - artifactory
+  before_script:
+    #SSH agent
+    - 'which ssh-agent || ( apk update  && apk add openssh)'
+    - eval $(ssh-agent -s)    
+    - ssh-add <(echo "$SSH_PRIVATE_KEY")    
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+    #GPG (gnupg)
+    - 'which gpg-agent || ( apk update  && apk add gnupg)'
+    - gpg -v --batch --import <(echo "$GPG_PRIVATE_KEY")
+    # Install JFrog CLI / configure artifactory
+    -  curl -fL https://getcli.jfrog.io | sh
+    - ./jfrog rt config --url=$ARTIFACTORY_URL --user=$ARTIFACTORY_USER --password=$ARTIFACTORY_PASS
+    - ./jfrog rt c show
+    - export M2_HOME=/usr/share/maven
+    - sed -i 's,SNAPSHOT_REPO_KEY,'"$SNAPSHOT_REPO_KEY"',g' configuration.yml
+    - sed -i 's,RELEASE_REPO_KEY,'"$RELEASE_REPO_KEY"',g' configuration.yml
+    - sed -i 's,ARTIFACTORY_JCENTER_REPO_KEY,'"$ARTIFACTORY_JCENTER_REPO_KEY"',g' configuration.yml
   script:
-    # Run the MVN command
-    - ./jfrog rt mvn "clean install" configuration.yml --build-name=jecoli_gitlabci-maven-artifactory --build-number=$CI_JOB_ID
-    # Collect the environment variables
-    - ./jfrog rt bce jecoli_gitlabci-maven-artifactoryy $CI_JOB_ID
-    # Pass the build information to Artifactory
-    - ./jfrog rt bp jecoli_gitlabci-maven-artifactory $CI_JOB_ID
+    - ./jfrog rt mvn "clean verify gpg:sign install" configuration.yml --build-name=jecoli_gitlabci_build --build-number=$CI_JOB_ID
+    - ./jfrog rt jecoli_gitlabci_build $CI_JOB_ID
+    - ./jfrog rt jecoli_gitlabci_build $CI_JOB_ID
   only:
     - master
