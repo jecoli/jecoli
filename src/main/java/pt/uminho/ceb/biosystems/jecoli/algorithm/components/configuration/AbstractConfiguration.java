@@ -170,7 +170,7 @@ public abstract class AbstractConfiguration<T extends IRepresentation> implement
 	/**
 	 * Sets the statistic configuration.
 	 * 
-	 * @param statisticConfiguration the new statistic configuration
+	 * @param statisticsConfiguration the new statistic configuration
 	 */
 	@Override
 	public void setStatisticsConfiguration(StatisticsConfiguration statisticsConfiguration) {
