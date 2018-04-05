@@ -36,7 +36,7 @@ maven_deploy:
     - sed -i 's,ARTIFACTORY_JCENTER_REPO_KEY,'"$ARTIFACTORY_JCENTER_REPO_KEY"',g' configuration.yml
   script:
     - ./jfrog rt mvn "clean verify gpg:sign install -Dmaven.test.skip=true -DadditionalJOption=-Xdoclint:none" configuration.yml --build-name=jecoli_gitlabci_build --build-number=$CI_JOB_ID
-    - ./jfrog rt jecoli_gitlabci_build $CI_JOB_ID
-    - ./jfrog rt jecoli_gitlabci_build $CI_JOB_ID
+    - ./jfrog rt bce jecoli_gitlabci_build $CI_JOB_ID
+    - ./jfrog rt bp jecoli_gitlabci_build $CI_JOB_ID
   only:
     - master
