@@ -99,12 +99,12 @@ public class EvolutionaryConfiguration<T extends IRepresentation, S extends ISol
 	public void setNichingEnabled(boolean isNichingEnabled) {
 		this.isNichingEnabled = isNichingEnabled;
 	}
-
-	/**
-	 * Sets the fixed population size.
-	 * 
-	 * @param fixedPopulationSize the new fixed population size
-	 */
+//
+//	/**
+//	 * Sets the fixed population size.
+//	 * 
+//	 * @param fixedPopulationSize the new fixed population size
+//	 */
 //	protected void setFixedPopulationSize(boolean fixedPopulationSize){
 //		this.fixedPopulationSize = fixedPopulationSize;
 //	}

@@ -12,9 +12,6 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.IRepr
  * 
  * 
  * @author pmaia
- * @date 2012
- * @version 
- * @since
  */
 public class NumFunctionEvaluationsListenerHybridTerminationCriteria extends NumberOfFunctionEvaluationsTerminationCriteria implements TerminationListener{
 	
