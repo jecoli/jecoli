@@ -82,7 +82,6 @@ public interface IInstruction{
 	/**
 	 * Gets the string representation.
 	 * 
-	 * @return the string representation
 	 */
 	void getStringRepresentation();
 	

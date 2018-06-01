@@ -53,7 +53,6 @@ public class IntegerSetRepresentationFactory extends AbstractSetRepresentationFa
 	 * 
 	 * @param maxElement the max element
 	 * @param maxSetSize the max set size
-	 * @param numberOfObjectives the number of objectives
 	 */
 	
 	public IntegerSetRepresentationFactory(int maxElement, int maxSetSize) {
@@ -77,7 +76,7 @@ public class IntegerSetRepresentationFactory extends AbstractSetRepresentationFa
 	 * @param maxSetSize the max set size
 	 * @param initialMinSize the initial min size
 	 * @param initialMaxSize the initial max size
-	 * @param numberOfObjectives the number of objectives
+	 * @param numberObjectives the number of objectives
 	 */
 	public IntegerSetRepresentationFactory(int maxElement, int minSetSize, int maxSetSize, int initialMinSize, int initialMaxSize, int numberObjectives) {
 		super(minSetSize, maxSetSize, initialMinSize, initialMaxSize, numberObjectives);

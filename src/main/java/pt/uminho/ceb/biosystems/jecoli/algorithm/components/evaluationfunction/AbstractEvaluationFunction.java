@@ -95,7 +95,7 @@ public abstract class AbstractEvaluationFunction<T extends IRepresentation> impl
      * 
      * @param solutionRepresentation the solution representation
      * 
-     * @return the list< double>
+     * @return the list
      * 
      * @throws Exception the exception
      */

@@ -49,7 +49,6 @@ public class GaussianPerturbationMutation extends AbstractMutationOperator<ILine
 	/**
 	 * Instantiates a new gaussian perturbation mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param maxNumberGenes the max number genes
 	 */
 	public GaussianPerturbationMutation(int maxNumberGenes){
@@ -59,7 +58,6 @@ public class GaussianPerturbationMutation extends AbstractMutationOperator<ILine
 	/**
 	 * Instantiates a new gaussian perturbation mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param positionProbability the position probability
 	 */
 	public GaussianPerturbationMutation(double positionProbability) {

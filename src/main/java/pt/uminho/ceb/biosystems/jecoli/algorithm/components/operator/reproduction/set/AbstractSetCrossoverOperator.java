@@ -72,7 +72,7 @@ public abstract class AbstractSetCrossoverOperator<G> extends AbstractCrossoverO
 	 * 
 	 * @param selectedSolutions the selected solutions
 	 * 
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 */
 	public List<ISolution<ISetRepresentation<G>>> crossover(List<ISolution<ISetRepresentation<G>>> selectedSolutions,ISetRepresentationFactory<G> solutionFactory,IRandomNumberGenerator randomGenerator)
 	{

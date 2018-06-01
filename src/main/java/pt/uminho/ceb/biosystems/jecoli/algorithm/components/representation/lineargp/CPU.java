@@ -65,7 +65,7 @@ public class CPU implements Serializable{
      * 
      * @param program the program
      * 
-     * @return the list< double>
+     * @return the list
      */
     public List<Double> evaluateProgram(ILinearRepresentation<IInstruction> program) {
         int numberOfInstructions = program.getNumberOfElements();
@@ -83,7 +83,7 @@ public class CPU implements Serializable{
     /**
      * Output register values.
      * 
-     * @return the list< double>
+     * @return the list
      */
     protected List<Double> outputRegisterValues() {
         List<Double> outputRegisterValues = new ArrayList<Double>(numberOfOutputRegisters);

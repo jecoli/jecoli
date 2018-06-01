@@ -42,7 +42,6 @@ public class PermutationInversionMutation extends AbstractPermutationMutationOpe
 	/**
 	 * Instantiates a new permutation inversion mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 */
 	public PermutationInversionMutation (){
 		radius = 0;
@@ -51,7 +50,6 @@ public class PermutationInversionMutation extends AbstractPermutationMutationOpe
 	/**
 	 * Instantiates a new permutation inversion mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param radius the radius
 	 */
 	public PermutationInversionMutation(int radius){

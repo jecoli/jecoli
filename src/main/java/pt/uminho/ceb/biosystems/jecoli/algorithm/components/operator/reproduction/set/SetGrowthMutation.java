@@ -50,7 +50,6 @@ public class SetGrowthMutation<E> extends AbstractSetMutationOperator<E> {
 	/**
 	 * Instantiates a new sets the growth mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param numberGenesToAdd the number genes to add
 	 */
 	public SetGrowthMutation(int numberGenesToAdd) {

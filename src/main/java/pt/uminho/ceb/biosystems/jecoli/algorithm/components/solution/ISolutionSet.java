@@ -35,7 +35,7 @@ import pt.uminho.ceb.biosystems.jecoli.algorithm.components.representation.IRepr
 public interface ISolutionSet<T extends IRepresentation> {
 	
 	/**
-	 * Adds the.
+	 * 
 	 * 
 	 * @param solution the solution
 	 */

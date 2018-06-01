@@ -78,9 +78,9 @@ public abstract class AbstractDualSetMutationOperator implements IReproductionOp
 	
 	/**
 	 * Mutate.
-	 * @param childSolutionArray the child solution array
+	 * @param childSolution the child solution 
 	 * 
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 */
 	protected List<ISolution<DualSetRepresentation>> mutate (ISolution<DualSetRepresentation> childSolution,DualSetRepresentationFactory solutionFactory,IRandomNumberGenerator randomGenerator)
 	{

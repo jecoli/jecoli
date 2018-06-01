@@ -193,7 +193,7 @@ public class MOUtils {
 	 * 
 	 * @param solutionSet the solution set
 	 * 
-	 * @return the <code>double[][]<code> containing the distances between solutions of the solution set
+	 * @return the <code>double[][]</code> containing the distances between solutions of the solution set
 	 */
 	public static double[][] distanceMatrix(List<? extends ISolution<?>> solutionSet) {
 		ISolution<?> solutionI, solutionJ;
@@ -219,7 +219,7 @@ public class MOUtils {
 	 * 
 	 * @param solutionSet the solution set
 	 * 
-	 * @return the <code>double[]<code> containing the distances between the solutions and the ones in the solution set
+	 * @return the <code>double[]</code> containing the distances between the solutions and the ones in the solution set
 	 */
 	public static double[] distanceVector(List<? extends ISolution<?>> solutionSet, ISolution<?> sol) {
 		ISolution<?> solutionI;
@@ -396,7 +396,6 @@ public class MOUtils {
 	 * 
 	 * @param front the front
 	 * @param noPoints the no points
-	 * @param noObjectives the no objectives
 	 * 
 	 * @return the non-dominated indexes
 	 */
@@ -468,9 +467,9 @@ public class MOUtils {
 		list[j] = temp;
 	}
 	
+//	 * strength(i) = |{ j | j <- Population and i dominates j}|.
 	/**
 	 * Computes the Strengths of the individuals in a given population
-	 * strength(i) = |{ j | j <- Population and i dominates j}|.
 	 * 
 	 * @param solutionSet the population
 	 * @param isMaximization the is maximization
@@ -504,7 +503,6 @@ public class MOUtils {
 	
 	/**
 	 * Computes the raw fitness of the individuals in a given population.
-	 * rawFitness(i) = |{sum strength(j) | j <- population and j dominates i}|
 	 * 
 	 * @param solutionSet the population
 	 * @param strength the <code>double[]</code> the array of strengths;

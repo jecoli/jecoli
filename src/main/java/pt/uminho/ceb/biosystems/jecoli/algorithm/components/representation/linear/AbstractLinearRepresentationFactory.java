@@ -139,7 +139,7 @@ public abstract class AbstractLinearRepresentationFactory<G> implements ILinearR
 	 * Creates a new AbstractLinearRepresentation object.
 	 * 
 	 * @param genome
-	 * @return a new <code>LinearRepresentation<code> instance
+	 * @return a new <code>LinearRepresentation</code> instance
 	 */
 	protected ILinearRepresentation<G>  createRepresentation(List<G> genome){
 		return new LinearRepresentation<G>(genome);

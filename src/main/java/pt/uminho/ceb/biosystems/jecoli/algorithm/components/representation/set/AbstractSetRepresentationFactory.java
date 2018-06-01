@@ -46,7 +46,7 @@ public abstract class AbstractSetRepresentationFactory<G> implements ISetReprese
 
 	}
 
-	/**
+	/*
 	 * Instantiates a new sets the representation factory.
 	 * 
 	 * @param maxElement the max element
@@ -113,7 +113,7 @@ public abstract class AbstractSetRepresentationFactory<G> implements ISetReprese
 	 * 
 	 * @param genome the genome
 	 * 
-	 * @return the i linear representation< g>
+	 * @return the i linear representation
 	 */
 	protected ISetRepresentation<G>  createRepresentation(TreeSet<G> genome){
 		return new SetRepresentation<G>(genome);

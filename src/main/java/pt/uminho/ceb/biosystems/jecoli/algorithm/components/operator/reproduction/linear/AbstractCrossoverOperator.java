@@ -77,7 +77,7 @@ public abstract class AbstractCrossoverOperator<G extends IRepresentation, F ext
 	 * @param solutionFactory 
 	 * @param randomNumberGenerator 
 	 * 
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 */
 	protected List<ISolution<G>> crossover(List<ISolution<G>> selectedSolutions, F solutionFactory, IRandomNumberGenerator randomNumberGenerator)
 	{
@@ -111,8 +111,6 @@ public abstract class AbstractCrossoverOperator<G extends IRepresentation, F ext
 	 * 
 	 * @param parentGenome the parent genome
 	 * @param parent1Genome the parent1 genome
-	 * @param childGenome the child genome
-	 * @param childGenome1 the child genome1
 	 * @param randomNumberGenerator TODO
 	 */
 	protected abstract List<ISolution<G>> crossOverGenomes(G parentGenome,G parent1Genome,F solutionFactory,IRandomNumberGenerator randomNumberGenerator);

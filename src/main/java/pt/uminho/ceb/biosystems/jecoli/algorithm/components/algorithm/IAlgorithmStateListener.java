@@ -30,11 +30,10 @@ package pt.uminho.ceb.biosystems.jecoli.algorithm.components.algorithm;
  * The class that is interested in processing a IAlgorithmState
  * event implements this interface, and the object created
  * with that class is registered with a component using the
- * component's <code>addIAlgorithmStateListener<code> method. When
- * the IAlgorithmState event occurs, that object's appropriate
+ * components <code>addIAlgorithmStateListener</code> method. When
+ * the IAlgorithmState event occurs, that object appropriate
  * method is invoked.
  * 
- * @see IAlgorithmStateEvent
  */
 public interface IAlgorithmStateListener {
 	

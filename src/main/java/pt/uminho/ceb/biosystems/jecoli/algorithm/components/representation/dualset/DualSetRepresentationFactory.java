@@ -64,7 +64,7 @@ public class DualSetRepresentationFactory implements ISolutionFactory<DualSetRep
 	
 	protected int numberOfObjectives;
 
-	/**
+	/*
 	 * Instantiates a new sets the representation factory.
 	 * 
 	 * @param maxElement the max element
@@ -91,13 +91,11 @@ public class DualSetRepresentationFactory implements ISolutionFactory<DualSetRep
 
 	}
 	
-	/**
+	/*
 	 * Instantiates a new sets the representation factory.
 	 * 
 	 * @param maxElement
 	 */
-	
-	
 	public DualSetRepresentationFactory(int maxElementKnockouts, int maxElementAddReactions){
 		this(maxElementKnockouts,maxElementAddReactions,maxElementKnockouts,maxElementAddReactions);
 	}
@@ -130,7 +128,7 @@ public class DualSetRepresentationFactory implements ISolutionFactory<DualSetRep
 		return genome;
 	}
 	
-	/**
+	/*
 	 * Generate solution.
 	 * 
 	 * @param setSize the set size

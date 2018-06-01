@@ -45,7 +45,6 @@ public class BitFlipMutation extends AbstractMutationOperator<ILinearRepresentat
 	/**
 	 * Instantiates a new bit flip mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param maxNumberGenes the max number genes
 	 */
 	public BitFlipMutation(int maxNumberGenes){
@@ -55,7 +54,6 @@ public class BitFlipMutation extends AbstractMutationOperator<ILinearRepresentat
 	/**
 	 * Instantiates a new bit flip mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param positionProbability the position probability
 	 */
 	public BitFlipMutation(double positionProbability) {

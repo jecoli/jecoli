@@ -40,7 +40,7 @@ public interface IPreProcessing<T extends IRepresentation> {
 	 * @param isMaximization the is maximization
 	 * @param solutionSet the solution set
 	 * 
-	 * @return the ordered circular vector< scaled fitness data>
+	 * @return the ordered list
 	 * 
 	 * @throws Exception the exception
 	 */

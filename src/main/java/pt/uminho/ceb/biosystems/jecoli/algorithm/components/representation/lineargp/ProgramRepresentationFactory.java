@@ -61,7 +61,6 @@ public class ProgramRepresentationFactory extends AbstractLinearRepresentationFa
 	 * Instantiates a new program representation factory.
 	 * 
 	 * @param programSize the program size
-	 * @param evaluationFunction the evaluation function
 	 * @param instructionFactory the instruction factory
 	 */
 	public ProgramRepresentationFactory(int programSize,InstructionFactory instructionFactory) {

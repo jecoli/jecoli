@@ -78,9 +78,9 @@ public abstract class AbstractPermutationMutationOperator implements IReproducti
 	 * Mutate.
 	 * @param solutionFactory 
 	 * 
-	 * @param childSolutionArray the child solution array
+	 * @param childSolution the child solution 
 	 * 
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 */
 	protected List<ISolution<PermutationRepresentation>> mutate (ISolution<PermutationRepresentation> childSolution, PermutationRepresentationFactory solutionFactory,IRandomNumberGenerator randomNumberGenerator)
 	{

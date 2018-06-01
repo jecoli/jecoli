@@ -55,7 +55,6 @@ public class Program extends LinearRepresentation<IInstruction> implements Seria
    /**
     * Gets the string representation.
     * 
-    * @return the string representation
     */
    public void getStringRepresentation() {
 	   for(IInstruction instruction:genome)

@@ -72,7 +72,7 @@ public class StochasticUniversalSamplingSelection<T extends IRepresentation> imp
      *@param numberOfSolutionsToSelect the number of solutions to select
      * @param solutionSet the solution set
      * @param isMaximization the is maximization
-*    @return the list< i solution>
+*    @return the list solutions
 	 */
 	protected List<ISolution<T>> selectSolutionList(double pointerStartValue, double pointerDistance, int numberOfSolutionsToSelect, ISolutionSet<T> solutionSet, boolean isMaximization) {
 		List<ISolution<T>> solutionList = new ArrayList<ISolution<T>>(numberOfSolutionsToSelect);

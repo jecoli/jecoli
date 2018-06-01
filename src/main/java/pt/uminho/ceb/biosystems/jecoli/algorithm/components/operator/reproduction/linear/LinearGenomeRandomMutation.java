@@ -42,8 +42,7 @@ public class LinearGenomeRandomMutation<G> extends AbstractMutationOperator<ILin
 	/**
 	 * Instantiates a new linear genome random mutation.
 	 * 
-	 * @param solutionFactory the solution factory
-	 * @param maxNumberGenes the max number genes
+	 * @param percentageOfGenesToMutate the max number genes
 	 */
 	public LinearGenomeRandomMutation(double percentageOfGenesToMutate) {
 		this.percentageOfGenesToMutate = percentageOfGenesToMutate;

@@ -48,10 +48,9 @@ public interface IAlgorithm<T extends IRepresentation> extends IDeepCopy {
      */
 	IAlgorithmResult<T> run() throws Exception, InvalidConfigurationException;
 	
-    
+//         * @param algorithmState TODO
     /**
      * Initialize.
-     * @param algorithmState TODO
      * 
      * @return the i solution set
      * 

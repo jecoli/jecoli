@@ -32,7 +32,7 @@ public abstract class AbstractHybridSetRepresentationFactory<G,H> implements IHy
 	/** Number of objectives set representation */
 	protected int numberOfObjectives;
 
-	/**
+	/*
 	 * Instantiates a new HybridRealSetRepresentationFactory
 	 * 
 	 * @param minSetSize

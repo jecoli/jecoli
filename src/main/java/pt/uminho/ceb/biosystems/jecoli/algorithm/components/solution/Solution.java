@@ -114,7 +114,7 @@ public class Solution<T extends IRepresentation> implements ISolution<T>, Serial
 	/**
 	 * Initialize fitness values vector.
 	 * 
-	 * @param numberObjectives the number objectives
+	 * @param fitnessValues fitnessValues
 	 */
 	protected void initializeFitnessValuesArray(Double... fitnessValues) {
         fitnessValuesArray = new Double[fitnessValues.length];

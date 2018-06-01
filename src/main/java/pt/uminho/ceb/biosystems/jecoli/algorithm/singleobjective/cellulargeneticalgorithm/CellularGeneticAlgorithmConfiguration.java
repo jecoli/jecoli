@@ -237,7 +237,7 @@ public class CellularGeneticAlgorithmConfiguration<T extends IRepresentation, S 
 	 * 
 	 * @param numberOfSolutions the number of solutions
 	 * 
-	 * @return the list< integer>
+	 * @return the list
 	 */
 	protected List<Integer> generateIndexList(int numberOfSolutions) {
 		List<Integer> indexList = new ArrayList<Integer>(numberOfSolutions);

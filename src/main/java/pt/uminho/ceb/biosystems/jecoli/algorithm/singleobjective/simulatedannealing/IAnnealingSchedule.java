@@ -65,7 +65,6 @@ public interface IAnnealingSchedule{
 	 * 
 	 * @param scalarFitnessValue the scalar fitness value
 	 * 
-	 * @return the fitness function data
 	 */
 	void getFitnessFunctionData(Double scalarFitnessValue);
 }

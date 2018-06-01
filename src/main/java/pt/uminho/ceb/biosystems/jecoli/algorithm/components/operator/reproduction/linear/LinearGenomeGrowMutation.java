@@ -45,8 +45,6 @@ public class LinearGenomeGrowMutation<E> extends AbstractMutationOperator<ILinea
     /**
      * Instantiates a new linear genome grow mutation.
      *
-     * @param solutionFactory  the solution factory
-     * @param numberGenesToAdd the number genes to add
      */
     public LinearGenomeGrowMutation() {
         this.numberGenesToAdd = 1;

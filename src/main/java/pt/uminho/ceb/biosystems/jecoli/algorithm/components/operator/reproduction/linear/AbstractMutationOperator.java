@@ -72,9 +72,9 @@ public abstract class AbstractMutationOperator<G extends IRepresentation,F exten
 	/**
 	 * Mutate.
 	 * @param solutionFactory 
-	 * @param childSolutionArray the child solution array
+	 * @param childSolution the child solution 
 	 * 
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 */
 	protected  List<ISolution<G>> mutate (ISolution<G> childSolution,F solutionFactory, IRandomNumberGenerator randomNumberGenerator){
 		List<ISolution<G>> resultList = new ArrayList<ISolution<G>>(NUMBER_OF_OUTPUT_SOLUTIONS);

@@ -41,7 +41,7 @@ public class ScaledFitnessData<T extends IRepresentation> {
 	/**
 	 * Instantiates a new scaled fitness data.
 	 * 
-	 * @param solutionIndex the solution index
+	 * @param solution solution
 	 * @param scaledFitnessValue the scaled fitness value
 	 */
 	public ScaledFitnessData(ISolution<T> solution, double scaledFitnessValue) {

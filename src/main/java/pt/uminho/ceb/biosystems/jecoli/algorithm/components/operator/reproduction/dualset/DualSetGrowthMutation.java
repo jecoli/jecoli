@@ -50,7 +50,6 @@ public class DualSetGrowthMutation extends AbstractDualSetMutationOperator {
 	/**
 	 * Instantiates a new sets the growth mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param numberGenesToAdd the number genes to add
 	 */
 	public DualSetGrowthMutation(int numberGenesToAdd) {

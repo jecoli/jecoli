@@ -86,7 +86,7 @@ public class RouletteWheelSelection<T extends IRepresentation> implements ISelec
 	 * @param isMaximization the is maximization
 	 * @param randomNumberGenerator 
 	 * 
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 * 
 	 * @throws Exception the exception
 	 */
@@ -125,7 +125,6 @@ public class RouletteWheelSelection<T extends IRepresentation> implements ISelec
 	 * Select solution.
 	 * 
 	 * @param solutionSet the solution set
-	 * @param totalFitnessValue the total fitness value
 	 * @param isMaximization the is maximization
 	 * @param scaledFitnessDataVector the scaled fitness data vector
 	 * @param randomNumberGenerator 

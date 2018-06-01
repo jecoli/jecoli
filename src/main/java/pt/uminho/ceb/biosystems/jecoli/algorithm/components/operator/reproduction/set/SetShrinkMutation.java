@@ -44,7 +44,6 @@ public class SetShrinkMutation<E> extends AbstractSetMutationOperator<E> {
 	/**
 	 * Instantiates a new sets the shrink mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param numberGenesToRemove the number genes to remove
 	 */
 	public SetShrinkMutation(int numberGenesToRemove) {

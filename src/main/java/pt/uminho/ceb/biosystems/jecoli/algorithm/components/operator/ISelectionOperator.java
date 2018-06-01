@@ -45,7 +45,7 @@ public interface ISelectionOperator<T extends IRepresentation> extends IOperator
 	 * @param solutionSet the solution set
 	 * @param isMaximization the is maximization
 	 * @param randomNumberGenerator TODO
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 * 
 	 * @throws InvalidSelectionProcedureException the invalid selection procedure exception
 	 * @throws InvalidSelectionParameterException the invalid selection parameter exception

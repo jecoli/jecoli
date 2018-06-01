@@ -44,7 +44,6 @@ public class InstructionFactory implements Serializable{
 	 * Instantiates a new instruction factory.
 	 * 
 	 * @param instructionList the instruction list
-	 * @param evaluationFunction the evaluation function
 	 */
 	public InstructionFactory(List<IInstruction> instructionList,CPU cpu) {
 		this.instructionList = instructionList;

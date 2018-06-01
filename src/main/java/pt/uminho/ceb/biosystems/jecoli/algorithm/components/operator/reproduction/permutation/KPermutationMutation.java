@@ -42,7 +42,6 @@ public class KPermutationMutation  extends AbstractPermutationMutationOperator {
 	/**
 	 * Instantiates a new k permutation mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 */
 	public KPermutationMutation(){
 		radius = 0;
@@ -51,7 +50,6 @@ public class KPermutationMutation  extends AbstractPermutationMutationOperator {
 	/**
 	 * Instantiates a new k permutation mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param radius the radius
 	 */
 	public KPermutationMutation(int radius){

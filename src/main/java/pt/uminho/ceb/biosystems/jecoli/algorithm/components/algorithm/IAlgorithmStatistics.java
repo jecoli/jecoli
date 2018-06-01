@@ -43,7 +43,7 @@ public interface IAlgorithmStatistics<T extends IRepresentation> {
     /**
      * Gets the statistic cell.
      * 
-     * @param i the i
+     * @param iterationIndex the i
      * 
      * @return the statistic cell
      */

@@ -45,7 +45,7 @@ public class HybridSetRepresentation<G,H> extends SetRepresentation<G> implement
 	/**
 	 * Instantiates a new HybridRealSetRepresentation
 	 * 
-	 * @param realvalues
+	 * @param listvalues
 	 * @param setvalues
 	 */
 	public HybridSetRepresentation(List<H> listvalues,TreeSet<G> setvalues){

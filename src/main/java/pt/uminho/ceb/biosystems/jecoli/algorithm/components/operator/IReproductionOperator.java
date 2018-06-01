@@ -43,7 +43,7 @@ public interface IReproductionOperator<T extends IRepresentation,S extends ISolu
 	 * @param selectedSolutions the selected solutions
 	 * @param randomNumberGenerator TODO
 	 * 
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 * 
 	 * @throws InvalidNumberOfInputSolutionsException the invalid number of input solutions exception
 	 * @throws InvalidNumberOfOutputSolutionsException the invalid number of output solutions exception

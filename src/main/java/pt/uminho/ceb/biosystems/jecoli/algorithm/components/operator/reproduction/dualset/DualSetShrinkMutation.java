@@ -46,7 +46,6 @@ public class DualSetShrinkMutation extends AbstractDualSetMutationOperator {
 	/**
 	 * Instantiates a new sets the shrink mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param numberGenesToRemove the number genes to remove
 	 */
 	public DualSetShrinkMutation(int numberGenesToRemove) {

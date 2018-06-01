@@ -74,7 +74,7 @@ public abstract class AbstractPermutationCrossoverOperator implements IReproduct
 	 * 
 	 * @param selectedSolutions the selected solutions
 	 * 
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 */
 	public List<ISolution<PermutationRepresentation>> crossover(List<ISolution<PermutationRepresentation>> selectedSolutions,PermutationRepresentationFactory solutionFactory,IRandomNumberGenerator randomGenerator)
 	{

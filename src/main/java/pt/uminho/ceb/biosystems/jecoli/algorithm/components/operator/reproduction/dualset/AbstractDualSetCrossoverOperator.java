@@ -81,7 +81,7 @@ public abstract class AbstractDualSetCrossoverOperator implements IReproductionO
 	 * 
 	 * @param selectedSolutions the selected solutions
 	 * 
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 */
 	public List<ISolution<DualSetRepresentation>> crossover(List<ISolution<DualSetRepresentation>> selectedSolutions,DualSetRepresentationFactory solutionFactory,IRandomNumberGenerator randomGenerator)
 	{

@@ -21,7 +21,6 @@ public class RealValueRandomMutation extends AbstractMutationOperator<ILinearRep
 	/**
 	 * Instantiates a new gaussian perturbation mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param maxNumberGenes the max number genes
 	 */
 	public RealValueRandomMutation(int maxNumberGenes){
@@ -31,7 +30,6 @@ public class RealValueRandomMutation extends AbstractMutationOperator<ILinearRep
 	/**
 	 * Instantiates a new gaussian perturbation mutation.
 	 * 
-	 * @param solutionFactory the solution factory
 	 * @param positionProbability the position probability
 	 */
 	public RealValueRandomMutation(double positionProbability) {

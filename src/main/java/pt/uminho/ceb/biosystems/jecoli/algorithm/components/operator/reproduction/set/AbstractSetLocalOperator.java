@@ -32,7 +32,7 @@ public abstract class AbstractSetLocalOperator<E,G extends ISetRepresentation<E>
 	/**
 	 * Instantiates a new abstract set mutation jecoliunittest.operators.operator.
 	 * 
-	 * @param solutionFactory the solution factory
+	 * @param evalFunction the solution factory
 	 */
 	public AbstractSetLocalOperator(IEvaluationFunction<ISetRepresentation<E>> evalFunction) {
 		this.evalFunction = evalFunction;

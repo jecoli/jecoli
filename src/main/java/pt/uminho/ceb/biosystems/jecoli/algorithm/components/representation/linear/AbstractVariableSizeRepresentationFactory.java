@@ -18,7 +18,7 @@ public abstract class AbstractVariableSizeRepresentationFactory <G> implements I
 	protected int maxSize;
 	protected int numberOfObjectives;
 
-	/**
+	/*
 	 * Instantiates a new abstract linear representation factory.
 	 * 
 	 * @param maxSetSize the solution size
@@ -102,7 +102,7 @@ public abstract class AbstractVariableSizeRepresentationFactory <G> implements I
 	 * 
 	 * @param genome the genome
 	 * 
-	 * @return the i linear representation< g>
+	 * @return the i linear representation
 	 */
 	protected ILinearRepresentation<G>  createRepresentation(List<G> genome){
 		return new LinearRepresentation<G>(genome);

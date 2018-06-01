@@ -109,11 +109,11 @@ public class EvolutionaryConfiguration<T extends IRepresentation, S extends ISol
 //		this.fixedPopulationSize = fixedPopulationSize;
 //	}
 
-	/**
-	 * Checks if is population size fixed.
-	 * 
-	 * @return true, if is population size fixed
-	 */
+//	/**
+//	 * Checks if is population size fixed.
+//	 * 
+//	 * @return true, if is population size fixed
+//	 */
 //	protected boolean isPopulationSizeFixed(){
 //		return fixedPopulationSize;
 //	}

@@ -44,7 +44,6 @@ public class LinearGenomeShrinkMutation<G> extends AbstractMutationOperator<ILin
     /**
      * Instantiates a new linear genome shrink mutation.
      *
-     * @param solutionFactory the solution factory
      */
     public LinearGenomeShrinkMutation() {
         numberGenesToRemove = 1;
@@ -53,7 +52,6 @@ public class LinearGenomeShrinkMutation<G> extends AbstractMutationOperator<ILin
     /**
      * Instantiates a new linear genome shrink mutation.
      *
-     * @param solutionFactory     the solution factory
      * @param numberGenesToRemove the number genes to remove
      */
     public LinearGenomeShrinkMutation(int numberGenesToRemove) {

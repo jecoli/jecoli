@@ -46,7 +46,7 @@ public class StatisticUtils<T extends IRepresentation> implements Serializable{
 	 * @param solutionSet the solution set
 	 * @param currentIteration the current iteration
 	 * 
-	 * @return the list< objective statistic cell>
+	 * @return the list 
 	 */
 	public static List<ObjectiveStatisticCell> calculateObjectiveStatisticCell(ISolutionSet<?> solutionSet,int currentIteration){
 //		int numberOfIndividuals = solutionSet.getNumberOfSolutions();

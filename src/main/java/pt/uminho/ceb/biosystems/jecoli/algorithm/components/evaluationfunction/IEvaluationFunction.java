@@ -51,7 +51,7 @@ public interface IEvaluationFunction<T extends IRepresentation> extends IDeepCop
     /**
      * Evaluate single solution.
      * 
-     * @param trialSolution the solution representation
+     * @param solution the solution representation
      */
     void evaluateSingleSolution(ISolution<T> solution);
     

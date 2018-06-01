@@ -133,7 +133,7 @@ public class DifferentialEvolution extends AbstractAlgorithm<ILinearRepresentati
 	 * @param mutatedSolutionSet the mutated solution set
 	 * @param solutionSet the solution set
 	 * 			
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 */
 	protected List<ISolution<ILinearRepresentation<Double>>> crossover(List<ISolution<ILinearRepresentation<Double>>> mutatedSolutionSet, ISolutionSet<ILinearRepresentation<Double>> solutionSet) {
 		int numberOfSolutions = solutionSet.getNumberOfSolutions();
@@ -182,7 +182,7 @@ public class DifferentialEvolution extends AbstractAlgorithm<ILinearRepresentati
 	 * 
 	 * @param solutionSet the solution set
 	 * 			
-	 * @return the list< i solution>
+	 * @return the list solutions
 	 */
 	protected List<ISolution<ILinearRepresentation<Double>>> mutation(ISolutionSet<ILinearRepresentation<Double>> solutionSet) {
 		int numberOfIndividuals = solutionSet.getNumberOfSolutions();

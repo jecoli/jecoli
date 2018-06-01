@@ -174,7 +174,7 @@ public class TournamentSelection<T extends IRepresentation> implements ISelectio
 	 * @param solutionSet the solution set
 	 * @param randomNumberGenerator
 	 *
-	 * @return the tree set< i solution>
+	 * @return the tree set solutions
 	 */
 	protected List<ISolution<T>> selectRandomSolutionList(List<ISolution<T>> solutionSet, IRandomNumberGenerator randomNumberGenerator) {
 		List<ISolution<T>>  solutionList = new ArrayList<ISolution<T>>();

@@ -40,7 +40,7 @@ public interface ISolution<T extends IRepresentation> {
 	/**
 	 * Sets the selection value
 	 * 
-	 * @param the selection value
+	 * @param selectionValue the selection value
 	 */	
 	void setSelectionValue(Double selectionValue);
 	   

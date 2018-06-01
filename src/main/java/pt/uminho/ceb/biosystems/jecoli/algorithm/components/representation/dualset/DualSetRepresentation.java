@@ -44,7 +44,7 @@ public class DualSetRepresentation implements IElementsRepresentation<Integer>, 
 	protected TreeSet<Integer>	genomeKO;					// genome of Knockouts
 	protected TreeSet<Integer>	genomeKI;					// genome of Knockins
 															
-	/**
+	/*
 	 * Instantiates a new sets the representation.
 	 * 
 	 * @param genome the genome
@@ -150,7 +150,7 @@ public class DualSetRepresentation implements IElementsRepresentation<Integer>, 
 		return genomeKI;
 	}
 	
-	/**
+	/*
 	 * Sets the genome.
 	 * 
 	 * @param genome the new genome

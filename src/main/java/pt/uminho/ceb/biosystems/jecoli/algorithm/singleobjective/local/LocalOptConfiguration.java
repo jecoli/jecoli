@@ -65,7 +65,7 @@ public class LocalOptConfiguration<T extends IRepresentation> extends AbstractCo
 	/**
 	 * Sets the mutation jecoliunittest.operators.operator container.
 	 * 
-	 * @param mutationOperatorContainer the new mutation jecoliunittest.operators.operator container
+	 * @param localOperatorContainer the new mutation jecoliunittest.operators.operator container
 	 */
 	public void setLocalOperatorContainer(IOperatorContainer<ILocalOptimizationOperator> localOperatorContainer) {
 		this.localOperatorContainer = localOperatorContainer;
