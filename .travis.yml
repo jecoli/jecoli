@@ -3,7 +3,9 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     
-script: echo "do not make tests"
+install: echo "no instaling"
+
+script: echo "no testing"
 
 deploy:
     provider: script
